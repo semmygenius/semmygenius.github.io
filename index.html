@@ -14,7 +14,7 @@
 
 
 html {
-font-size:15px;
+font-size:20px;
 }
 
 /* Hide the scrollbar */
@@ -1548,7 +1548,6 @@ weight:heavy;
 
 <div class="answerboxphone invisiblescroll AllText" id="answerboxPhone2" contenteditable="true">
 
-
 </div>
 <Br>
 
@@ -1785,7 +1784,6 @@ weight:heavy;
 <div class="addYESNO" id="resetReference" onclick="expandAnswerboxRef('Reference')">EXPAND</div>
 <br>
 <div class="answerbox2" id="Reference" style="height:20rem;" contenteditable="true">
-
 </div>
 <br>
 <div id="ReferenceTypeSelect" style="display:inline-block;">
@@ -1835,11 +1833,11 @@ weight:heavy;
  <button onclick="convertToSingleParagraphRef()" class="buttonstyle_Format">Paragraph</button>
 
 
- <button onclick="highlightCountry()" class="buttonstyle_Format">Foreign</button>
 <button onclick="cleanUpReference()" class="buttonstyle_Format">Spacing *</button>
 <button onclick="removeNumbersFromAuthor()" class="buttonstyle_Format">Name Number</button>
 <button onclick="addLineBreaks()" class="buttonstyle_Format">Auto Space</button>
 <button onclick="autoIQ()" class="buttonstyle_Format">Auto IQ</button>
+<button onclick="combineSentencesWithCommas()" class="buttonstyle_Format">AutoCombine</button>
 <Br>
 
 <button onclick="capitalizeBookmark()" class="buttonstyle_Format" id="CapButton">Cap first</button>
@@ -6000,7 +5998,7 @@ Id — Insurance ID<br>
 
 <br>
 <textarea id="Criteria" class="invisiblescroll" style="height:20rem;">
-This is a sentence (23). 1. This is a sentence (23). This is a sentence (23). 2. This is a sentence (23). This is a sentence (23).
+
 </textarea>
 
 <Br>
@@ -6017,7 +6015,8 @@ This is a sentence (23). 1. This is a sentence (23). This is a sentence (23). 2.
 	 <button  onclick="Huang()" class="buttonstyle_Format">Dr. Huang</button>
 		 <button  onclick="removeTrailingACriteria()" class="buttonstyle_Format">- wordA</button>
 	<button  onclick="Huang()" class="buttonstyle_Format">Dr. Huang</button>
-		 <button  onclick="splitCriteriaText()" class="buttonstyle_Format">AutoSplit</button>	 
+		 <button  onclick="splitCriteriaText()" class="buttonstyle_Format">AutoSplit</button>	
+		 <button  onclick="combineCriteriaText()" class="buttonstyle_Format">AutoCombine</button> 
 		 
 <div>
 <label><input type="checkbox" id="numericSplit" checked> Numerals</label>
@@ -6025,7 +6024,7 @@ This is a sentence (23). 1. This is a sentence (23). This is a sentence (23). 2.
 <label><input type="checkbox" id="romanSplit" checked> iv.</label>
 <label><input type="checkbox" id="parenNumericSplit" checked> 123)</label>
 <label><input type="checkbox" id="letterParenSplit" checked> abc)</label>
-<label><input type="checkbox" id="symbolSplit" checked> Symbols</label>
+<label><input type="checkbox" id="symbolSplit"> Symbols</label>
 <label><input type="checkbox" id="questionMarkSplit"> ?</label><br>
 </div>
 
@@ -7322,26 +7321,24 @@ function fixPhoneTimeFormat() {
 
   let text = div.innerHTML;
 
-  // Skip conversion if already in H:MM AM/PM or HH:MM AM/PM
+  // 1. Skip conversion if already in H:MM AM/PM or HH:MM AM/PM
   const timeWithMinutesRegex = /\b\d{1,2}:\d{2}\s?(AM|PM)\b/i;
 
-  // 1. Convert "2PM" or "1 PM" → "1:00 PM", BUT DO NOT touch if part of "1:00 PM"
+  // Convert "2PM" or "1 PM" → "1:00 PM", but DO NOT touch if part of "1:00 PM"
   text = text.replace(/\b(\d{1,2})\s?(AM|PM)\b/g, (match, hour, ampm, offset, string) => {
-    // Check if the full match is part of an already-valid time like "1:00 PM"
     const before = string.slice(Math.max(0, offset - 3), offset + match.length + 3);
-    if (/\d{1,2}:\d{2}\s?(AM|PM)/i.test(before)) return match; // skip touching valid time
+    if (/\d{1,2}:\d{2}\s?(AM|PM)/i.test(before)) return match;
     return `${hour}:00 ${ampm.toUpperCase()}`;
   });
 
-  // 2. Convert standalone numbers like "4" → "4:00 AM/PM"
-  text = text.replace(/(?<=\s|^)(1[0-2]|[1-9])(?=\s|[.,;!?)]|$)/g, (match) => {
-    const hour = parseInt(match, 10);
-    const ampm = (hour >= 6 && hour <= 11) ? 'AM' : 'PM';
-    return `${hour}:00 ${ampm}`;
+  // ✅ Only convert if number is directly followed by AM or PM (e.g. "4 AM")
+  text = text.replace(/\b(1[0-2]|[1-9])\s?(AM|PM)\b/gi, (match, hour, ampm) => {
+    return `${hour}:00 ${ampm.toUpperCase()}`;
   });
 
   div.innerHTML = text;
 }
+
 
 function addAMPMtoBareTimes() {
   const div = document.getElementById('answerboxPhone2');
@@ -8193,55 +8190,45 @@ function copyBookmark(id) {
     }
 }
 function swapToTextarea(id) {
-    var element = document.getElementById(id);
-    var parent = element.parentNode;
+    const element = document.getElementById(id);
+    const parent = element.parentNode;
 
-    // Save the current display state
-    var currentDisplay = window.getComputedStyle(element).display;
-
-    // Clean non-breaking spaces before reading text
-    var cleanedInnerHTML = element.innerHTML.replace(/\u00A0/g, ' ');
-    var tempDiv = document.createElement('div');
-    tempDiv.innerHTML = cleanedInnerHTML;
-
-    // Get visible text and remove leading/trailing line breaks
-    var cleanText = tempDiv.innerText.replace(/^\n+|\n+$/g, '');
+    const currentDisplay = window.getComputedStyle(element).display;
 
     // Create the textarea
-    var textarea = document.createElement('textarea');
+    const textarea = document.createElement('textarea');
     textarea.className = element.className;
     textarea.id = element.id;
     textarea.style.width = element.style.width;
     textarea.style.backgroundColor = element.style.backgroundColor;
     textarea.style.borderColor = element.style.borderColor;
-    textarea.value = cleanText;
-    textarea.style.height = 'auto'; // Adjust height if necessary
 
-    // Replace the div with the textarea
+    // ✅ Clean &nbsp; and preserve all line breaks
+    const rawText = element.innerText.replace(/\u00A0/g, ' ');
+    textarea.value = rawText;
+
+    textarea.style.height = 'auto';
     parent.replaceChild(textarea, element);
 
-    // Swap back to div after 0.5 seconds
-    setTimeout(function () {
-        var newElement = document.createElement('div');
+    setTimeout(() => {
+        const newElement = document.createElement('div');
         newElement.className = textarea.className;
         newElement.id = textarea.id;
         newElement.style.width = textarea.style.width;
         newElement.style.backgroundColor = textarea.style.backgroundColor;
         newElement.style.borderColor = textarea.style.borderColor;
 
-        // Normalize and convert line breaks
-        var raw = textarea.value.replace(/\u00A0/g, ' ').trim();
-        var processedText = raw
-            .replace(/\n{3,}/g, '<br><br>')   // 3+ newlines → <br><br>
-            .replace(/\n\n/g, '<br><br>')     // 2 newlines → <br><br>
-            .replace(/\n/g, '<br>');          // 1 newline → <br>
+        // ✅ Convert line breaks + clean non-breaking spaces again
+        const processedText = textarea.value
+            .replace(/\u00A0/g, ' ')
+            .replace(/\n\n+/g, '<br><br>')
+            .replace(/\n/g, '<br>');
 
         newElement.innerHTML = processedText;
         newElement.contentEditable = 'true';
-        newElement.style.height = 'auto'; // Adjust height if necessary
+        newElement.style.height = 'auto';
         newElement.style.display = currentDisplay;
 
-        // Replace the textarea with the div
         parent.replaceChild(newElement, textarea);
     }, 500);
 }
@@ -11476,14 +11463,32 @@ function splitCriteriaText() {
   }
 
   // Symbol split on •, o (whole word), and -
-  if (symbolChecked) {
-    const symbolPattern = /(?=\s*(?:•|\bo\b|-))/gi;
-    const splitBySymbols = text
-      .split(symbolPattern)
-      .map(s => s.trim())
-      .filter(Boolean);
-    text = splitBySymbols.join('\n');
-  }
+if (symbolChecked) {
+  const bulletPattern = /(?=\s*(?:•|\bo\b))/gi;
+  text = text
+    .split(bulletPattern)
+    .map(s => s.trim())
+    .filter(Boolean)
+    .join('\n');
+
+  const dashWithSpacePattern = /(?<=^|\s)- (?=\S)/g;
+  text = text
+    .split(dashWithSpacePattern)
+    .map(s => s.trim())
+    .filter(Boolean)
+    .map((segment, i) => i === 0 ? segment : '- ' + segment)
+    .join('\n');
+
+  const dashNoSpacePattern = /(?<=^|\s)-(?=\S)/g;
+  text = text
+    .split(dashNoSpacePattern)
+    .map(s => s.trim())
+    .filter(Boolean)
+    .map((segment, i) => i === 0 ? segment : '-' + segment)
+    .join('\n');
+}
+
+
 
   // Split exclusively on question mark '?'
   if (questionMarkChecked) {
@@ -11518,6 +11523,110 @@ function fixPlanLanguageBreaks() {
   });
 }
 
+function combineCriteriaText() {
+  const textarea = document.getElementById('Criteria');
+  if (!textarea) return;
+
+  const lines = textarea.value.split('\n').map(line => line.trim());
+  const combinedLines = [];
+  let currentLine = '';
+  let currentPatternActive = false; // Tracks if current line started with enabled pattern
+
+  // Checkbox states
+  const isNumeric = document.getElementById('numericSplit')?.checked;
+  const isAlphaLower = document.getElementById('alphaLowerSplit')?.checked;
+  const isAlphaUpper = document.getElementById('alphaUpperSplit')?.checked;
+  const isRoman = document.getElementById('romanSplit')?.checked;
+  const isParenNumeric = document.getElementById('parenNumericSplit')?.checked;
+  const isLetterParen = document.getElementById('letterParenSplit')?.checked;
+  const isSymbol = document.getElementById('symbolSplit')?.checked;
+  const isQuestionMark = document.getElementById('questionMarkSplit')?.checked;
+
+  // Regex patterns for each
+  const patternsMap = {
+    numeric: /^\d+\.\s+/,
+    alphaLower: /^[a-z]\.\s+/,
+    alphaUpper: /^[A-Z]\.\s+/,
+    roman: /^(i{1,3}|iv|v|vi{0,3}|ix|x)\.\s+/i,
+    parenNumeric: /^\d+\)\s+/,
+    letterParen: /^[a-zA-Z]\)\s+/,
+    symbol: /^[-•]\s*/,
+    questionMark: /^\?\s*/,
+  };
+
+  // Enabled patterns array for quick test
+  const enabledPatterns = [];
+  if (isNumeric) enabledPatterns.push(patternsMap.numeric);
+  if (isAlphaLower) enabledPatterns.push(patternsMap.alphaLower);
+  if (isAlphaUpper) enabledPatterns.push(patternsMap.alphaUpper);
+  if (isRoman) enabledPatterns.push(patternsMap.roman);
+  if (isParenNumeric) enabledPatterns.push(patternsMap.parenNumeric);
+  if (isLetterParen) enabledPatterns.push(patternsMap.letterParen);
+  if (isSymbol) enabledPatterns.push(patternsMap.symbol);
+  if (isQuestionMark) enabledPatterns.push(patternsMap.questionMark);
+
+  // Helper to check if line starts with any enabled pattern
+  function startsWithEnabled(line) {
+    return enabledPatterns.some(re => re.test(line));
+  }
+
+  // Helper to check if line starts with any known pattern (enabled or disabled)
+  function startsWithAnyKnown(line) {
+    return Object.values(patternsMap).some(re => re.test(line));
+  }
+
+  for (const line of lines) {
+    if (!line) continue;
+
+    if (startsWithEnabled(line)) {
+      // New line starts with enabled pattern → push previous and start new
+      if (currentLine) combinedLines.push(currentLine.trim());
+      currentLine = line;
+      currentPatternActive = true;
+    } else if (startsWithAnyKnown(line)) {
+      // Line starts with a known pattern but NOT enabled → push previous line and this line separately
+      if (currentLine) combinedLines.push(currentLine.trim());
+      combinedLines.push(line); // this line stands alone, no combining
+      currentLine = '';
+      currentPatternActive = false;
+    } else {
+      // Line does not start with any known pattern
+      if (currentPatternActive && currentLine) {
+        // Append continuation line to current combined line
+        currentLine += ' ' + line;
+      } else {
+        // No current combined line or current is not active pattern → just push as its own line
+        if (currentLine) combinedLines.push(currentLine.trim());
+        currentLine = line;
+        currentPatternActive = false;
+      }
+    }
+  }
+
+  if (currentLine) combinedLines.push(currentLine.trim());
+
+  textarea.value = combinedLines.join('\n');
+}
+
+
+
+
+function combineSentencesWithCommas() {
+  const div = document.getElementById('Reference');
+  if (!div) return;
+
+  // Get the text content and split by new lines
+  const lines = div.innerText.split('\n').map(line => line.trim()).filter(Boolean);
+
+  if (lines.length === 0) return;
+
+  // Join all but the last with commas, then add a comma and a space
+  // before the last sentence, which ends with a period.
+  const combined = lines.slice(0, -1).map(s => s + ', ').join('') + lines.slice(-1)[0] + '.';
+
+  // Set the combined string back as innerText to preserve plain text
+  div.innerText = combined;
+}
 
 </script>
 
