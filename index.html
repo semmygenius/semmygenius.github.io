@@ -6016,9 +6016,10 @@ Id — Insurance ID<br>
 1. CriteriaA MET
 2. Something (urgent)A MET
 3. Dyspnea <3>
+
 4. Label:A <1, 2, 3>
 5. Ending with A
-
+6. Something (E0745)A MET
 </textarea>
 
 <Br>
@@ -11406,20 +11407,20 @@ function autoIQ() {
   // 0. Ensure space after any colon (e.g., "X:Y" → "X: Y"), unless already followed by a space
   text = text.replace(/(\b\w+):(?=\S)/g, '$1: ');
 
-  // 1. Add comma before "Subset"
-  text = text.replace(/\s+(Subset)/g, ', $1');
+  // 1. Add comma before "Subset" if not already preceded by a comma
+  text = text.replace(/(?<![,])\s+(Subset)/g, ', $1');
 
-  // 2. Remove any instance of "(1, 2, 3, 4, 5)" and similar digit groups in parentheses
+  // 2. Remove any instance of "(1, 2, 3)" and similar digit groups in parentheses
   text = text.replace(/\(\s*\d+(?:\s*,\s*\d+)*\s*\)/g, '');
 
-  // 3. Also remove groups of numbers in angle brackets (e.g. "<1, 2, 3>" or "<3>")
+  // 3. Also remove groups of numbers in angle brackets (e.g., "<1, 2, 3>" or "<3>")
   text = text.replace(/<\s*\d+(?:\s*,\s*\d+)*\s*>/g, '');
 
-  // 4. Add comma before "Requested Service"
-  text = text.replace(/\s+(Requested Service)/g, ', $1');
+  // 4. Add comma before "Requested Service" if not already preceded by a comma
+  text = text.replace(/(?<![,])\s+(Requested Service)/g, ', $1');
 
-  // 5. Add comma before "Recommendation"
-  text = text.replace(/\s+(Recommendation)/g, ', $1');
+  // 5. Add comma before "Recommendation" if not already preceded by a comma
+  text = text.replace(/(?<![,])\s+(Recommendation)/g, ', $1');
 
   // Apply the changes
   div.innerHTML = text;
