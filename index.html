@@ -1157,6 +1157,7 @@ weight:heavy;
 <div id="misc6" style="display:none;">-&nbsp;</div>
 <div id="misc5" style="display:none;">- removed&nbsp;</div>
 <div id="misc1" style="display:none;">- moved to&nbsp;</div>
+<div id="misc9" style="display:none;">- updated &nbsp;to NA per&nbsp;</div>
 <div id="misc2" style="display:none;">- contradictory statements, flagged *** </div>
 <div id="misc3" style="display:none;">- removed duplicate in&nbsp;</div>
 <div id="misc4" style="display:none;">- removed direct citation, changed to author yr format</div>
@@ -1350,6 +1351,7 @@ weight:heavy;
 <button onclick="toggleClient('CTCPA'); restoreDisplay();" class="buttonstyle_casenote notestyleBlue">CT-CPA</button>
 <button onclick="toggleClient('CTCNC'); restoreDisplay();" class="buttonstyle_casenote notestyleBlue">CT-CNC</button>
 <button onclick="toggleClient('CTCMD'); restoreDisplay();" class="buttonstyle_casenote notestyleBlue">CT-CMD</button>
+<button onclick="toggleClient('CLOVERNJ2'); restoreDisplay();" class="buttonstyle_casenote notestyleBlue">CLOVER NJ2</button>
 <button onclick="toggleClient('CONTRASP'); restoreDisplay();" class="buttonstyle_casenote notestyleBlue">CONTRA-SP</button>
 <button onclick="toggleClient('HEAPLMI'); restoreDisplay();" class="buttonstyle_casenote notestyleBlue">HEAPLMI</button>
 
@@ -1373,7 +1375,7 @@ weight:heavy;
 <button onclick="toggleClient('LINEIL'); restoreDisplay();" class="buttonstyle_casenote notestyleBlue">LINE IL</button>
 <button onclick="toggleClient('HMETNNV'); restoreDisplay();" class="buttonstyle_casenote notestyleBlue SSO">HMETN NV</button>
 
-<button onclick="toggleClient('INETMD'); restoreDisplay();toggleVisible('SummaryButton');" class="buttonstyle_casenote notestyleBlue Summary">INET MD</button>
+<button onclick="toggleClient('INETMD'); restoreDisplay();toggleInline('SummaryButton');" class="buttonstyle_casenote notestyleBlue Summary">INET MD</button>
 
 <button onclick="toggleClient('SBATN'); restoreDisplay();" class="buttonstyle_casenote notestyleBlue">SBA TN</button>
 
@@ -1427,7 +1429,7 @@ weight:heavy;
 <button onclick="toggleClient('WPASWA'); restoreDisplay();" class="buttonstyle_casenote notestyleBlue">WPAS WA</button>
 <br>
 <button onclick="toggleClient('HPIAP');restoreDisplay();hideCreatebutton(); hideDisplay('hideCreate');" class="buttonstyle_casenote notestylePurple SSO">HPI AP</button>
-<button onclick="toggleClient('MEDHLPTX'); restoreDisplay();toggleVisible('SummaryButton');" class="buttonstyle_casenote notestyleBlue Summary">MEDHLPTX</button>
+<button onclick="toggleClient('MEDHLPTX'); restoreDisplay();toggleInline('SummaryButton');" class="buttonstyle_casenote notestyleBlue Summary">MEDHLPTX</button>
 
 <div class="CaseHeader" style="background-color:#048267; width:17.5rem;">Special Format</div><Br>
 <button onclick="toggleClient('ARBCWALAP');restoreDisplay(); hideCreatebutton();hideDisplay('hideCreate')" class="buttonstyle_casenote notestylePurple">ARBCWALAP</button>
@@ -1451,7 +1453,7 @@ weight:heavy;
 <br>
 <div class="CaseHeader" style="background-color:#0069a1;   width:17.5rem;">NRL</div><Br>
 
-<button onclick="toggleClient('UMROHMD') ; restoreDisplay();toggleVisible('SummaryButton');" class="buttonstyle_casenote notestyleBlue Summary">UMR OH MD</button>
+<button onclick="toggleClient('UMROHMD') ; restoreDisplay();" class="buttonstyle_casenote notestyleBlue">UMR OH MD</button>
 <button onclick="toggleClient('HEAPRTM2'); restoreDisplay();" class="buttonstyle_casenote notestyleBlue">HEAPRTM 2</button>
 <button onclick="toggleClient('HEAPRTM3'); restoreDisplay();" class="buttonstyle_casenote notestyleBlue SSO">HEAPRTM 3</button>
 <button onclick="toggleClient('HEAPRTM5'); restoreDisplay();" class="buttonstyle_casenote notestyleBlue SSO"> HEAPRTM 5</button>
@@ -1460,7 +1462,7 @@ weight:heavy;
 <br>
 <div class="CaseHeader" style="background-color:#048267; width:17.5rem;">Special Format</div><Br>
 
-<button onclick="toggleClient('WELLMCRSP');restoreDisplay(); hideDisplay('hideCreate'); hideDisplay('SOTCopyButton'); hideCreatebutton();toggleVisible('SOTMoveButton');" class="buttonstyle_casenote notestyleGreen SSO">WELLMCR SP</button>
+<button onclick="toggleClient('WELLMCRSP');restoreDisplay(); hideDisplay('hideCreate'); hideDisplay('SOTCopyButton'); hideCreatebutton();toggleInline('SOTMoveButton');" class="buttonstyle_casenote notestyleGreen SSO">WELLMCR SP</button>
 <br>
 <div class="CaseHeader" style="background-color:#ffb300; width:17.5rem;">Quirk</div><Br>
 
@@ -1512,10 +1514,10 @@ weight:heavy;
 
 <div class="CaseHeader" style="background-color:#048267; width:17.5rem;">Special Format</div><Br>
 
-<button onclick="toggleClient('CHCTXST'); updateCurrentMonth(); restoreDisplay();toggleVisible('SummaryButton');" class="buttonstyle_casenote notestyleGreen Summary">CHC TX ST</button>
-<button onclick="toggleClient('CHCTXMD'); updateCurrentMonth();restoreDisplay();hideCreatebutton();toggleVisible('SummaryButton');" class="buttonstyle_casenote notestylePurple Summary">CHC TX MD</button>
-<button onclick="toggleClient('CHCTXMD2'); updateCurrentMonth();restoreDisplay();hideCreatebutton();toggleVisible('SummaryButton');" class="buttonstyle_casenote notestylePurple Summary">CHC TX MD2</button>
-<button onclick="toggleClient('TCHPTXMD'); updateCurrentMonth();restoreDisplay();hideCreatebutton();toggleVisible('SummaryButton');" class="buttonstyle_casenote notestylePurple Summary">TCHP TX MD</button>
+<button onclick="toggleClient('CHCTXST'); updateCurrentMonth(); restoreDisplay();toggleInline('SummaryButton');" class="buttonstyle_casenote notestyleGreen Summary">CHC TX ST</button>
+<button onclick="toggleClient('CHCTXMD'); updateCurrentMonth();restoreDisplay();hideCreatebutton();toggleInline('SummaryButton');" class="buttonstyle_casenote notestylePurple Summary">CHC TX MD</button>
+<button onclick="toggleClient('CHCTXMD2'); updateCurrentMonth();restoreDisplay();hideCreatebutton();toggleInline('SummaryButton');" class="buttonstyle_casenote notestylePurple Summary">CHC TX MD2</button>
+<button onclick="toggleClient('TCHPTXMD'); updateCurrentMonth();restoreDisplay();hideCreatebutton();toggleInline('SummaryButton');" class="buttonstyle_casenote notestylePurple Summary">TCHP TX MD</button>
 
 
 <br>
@@ -2103,12 +2105,16 @@ weight:heavy;
 <select id="MiscSelect" style="width:1.5rem; height:.75rem; padding:0px; font-size:.7rem; margin:0px;" onchange="toggleDisplayDropDown(this)">
     <option value="" disabled selected> </option>
 			    <option value="misc6">...</option>
+	    <option value="misc5">removed...</option>
+		
+				
+			    <option value="misc9">updated to NA</option>
     <option value="misc1">moved to</option>
+	
     <option value="misc2">seems contradictory</option>
     <option value="misc3">removed duplicate in with </option>
     <option value="misc8">removed duplicate in Q1, same as SOT </option>
     <option value="misc4">removed direct citation, changed to author yr format</option>
-	    <option value="misc5">removed...</option>
 	
 							    <option value="misc7">Quality of Care</option>
 </select>
@@ -2928,6 +2934,15 @@ of experimental services and supplies:
 — Ensure reviewer addressed each GI procedures<Br>
 </div>  
 
+<div id="CLOVERNJ2" class="ClientSelection">
+<div class ="ClientHeader"><b>Clover Health CLOVER NJ2</b></div>
+
+ <div class="CaseHeader"style="background-color:#048267;">Special</div><Br>
+— If unable to meet TAT, please notify client immediately. <br>
+
+<div class="CaseHeader" style="background-color:#0069a1;">NRL</div><Br>
+ 
+</div>  
 
 <div id="BHPAP" class="ClientSelection">
 <div class ="ClientHeader"><b>Brighton Health Plan BHP AP</b></div>
@@ -3505,7 +3520,7 @@ Experimental, Investigational, or Unproven means any drug, service, supply, care
 <div class ="ClientHeader"><b>UMR (Specialist Initial Review) UMR OH MD</b>
 </div>
 
- <div class="CaseHeader"style="background-color:#048267;">Special</div>  <span class="SUM">SUMMARY</span><Br>
+ <div class="CaseHeader"style="background-color:#048267;">Special</div><Br>
 
 <div class="CaseHeader" style="background-color:#0069a1;">NRL</div><Br>
  
@@ -5998,6 +6013,11 @@ Id — Insurance ID<br>
 
 <br>
 <textarea id="Criteria" class="invisiblescroll" style="height:20rem;">
+1. CriteriaA MET
+2. Something (urgent)A MET
+3. Dyspnea <3>
+4. Label:A <1, 2, 3>
+5. Ending with A
 
 </textarea>
 
@@ -7760,6 +7780,23 @@ function toggleDisplayCPT(id, show) {
   function toggleVisible(elementId) {
             var element = document.getElementById(elementId);
             if (element.style.display === "none" || element.style.display === "") {
+                element.style.display = "block";
+            }
+            // If the element is already visible, do nothing
+        }
+function hideDisplay(id) {
+ const element = document.getElementById(id);
+    if (element) {
+        // Check computed style, not just inline style
+        const computedDisplay = window.getComputedStyle(element).display;
+        if (computedDisplay !== "none") {
+            element.style.display = "none"; // hide the div
+        }
+    }
+}
+ function toggleInline(elementId) {
+            var element = document.getElementById(elementId);
+            if (element.style.display === "none" || element.style.display === "") {
                 element.style.display = "inline-block";
             }
             // If the element is already visible, do nothing
@@ -8563,6 +8600,7 @@ function expandAcronyms() {
 "TID": { expanded: false, fullForm: "three times daily (TID)" },
 "PAD": { expanded: false, fullForm: "peripheral arterial disease (PAD)" },
 "MI":  { expanded: false, fullForm: "myocardial infarction (MI)" },
+"UA":  { expanded: false, fullForm: "urinalysis (UA)" },
 "SOB":  { expanded: false, fullForm: "shortness of breath (SOB)" },
 "BIPAP": { expanded: false, fullForm: "bilevel positive airway pressure (BIPAP)" },
 "DDD": { expanded: false, fullForm: "degenerative disc disease (DDD)" },
@@ -8694,7 +8732,7 @@ function addTheBeforeOrg() {
     acronyms.forEach(acronym => {
       const regex = new RegExp(
         // Negative lookbehind: skip if preceded by ( or words like "the", "current", etc.
-        `(?<!\\b(?:the|current|and|no|an|these|are|not|is)\\s)(?<!\\()\\b(${acronym})\\b`, 
+        `(?<!\\b(?:the|current|and|no|an|these|are|not|recent|endorse|is)\\s)(?<!\\()\\b(${acronym})\\b`, 
         'gi'
       );
 
@@ -8822,7 +8860,7 @@ function expandTermsThe() {
     // Replace acronyms with their expansions while preserving existing spans
     Object.keys(expansions).forEach(acronym => {
       // Define regex patterns to match the acronym, avoiding parentheses
-      const regex1 = new RegExp(`(?<!PET/|[/.]\\s|\\b(?:the|this|medical|and|body|prior|chest|leg|lung|legs|brain|liver|abdomen|pelvis|arms|hand|back|pelvis|hip|sinus|head|shoulder|monitoring|joint|documented|screening|equivocal|pelvic|consider|supports|abdominal|performed|repeat|cervical|lungs|plain|wrist|knee|requested|recommended|contrast|ankle|an|previous|lumbar|criteria|is|spine|thoracic|neck|multiple|beam|heart|that|a|surveillance|as|spinal|his|her|their|negative|breast|standard|recent|preoperative|elbow|dental|foot|getting|yearly|over|submitted|over|another|updated|outpatient|inpatient|had|routine|dual|for|dose|thumb|panoramic|no|initial|abnormal|cardiac|formal)\\s)(?<!\\()\\b${acronym}\\b(?![)\\)])`, 'gi');
+      const regex1 = new RegExp(`(?<!PET/|[/.]\\s|\\b(?:the|this|medical|and|body|prior|chest|leg|lung|legs|brain|liver|abdomen|pelvis|arms|hand|back|pelvis|hip|sinus|head|shoulder|monitoring|joint|documented|screening|equivocal|pelvic|consider|supports|abdominal|performed|repeat|cervical|lungs|plain|wrist|knee|requested|recommended|these|contrast|up|ankle|an|previous|lumbar|criteria|is|spine|thoracic|neck|multiple|beam|heart|that|a|surveillance|as|spinal|his|her|their|negative|breast|standard|recent|preoperative|elbow|dental|foot|getting|yearly|over|submitted|over|another|updated|outpatient|inpatient|had|routine|dual|for|dose|thumb|panoramic|no|initial|abnormal|cardiac|formal)\\s)(?<!\\()\\b${acronym}\\b(?![)\\)])`, 'gi');
 
       const regex2 = new RegExp(`(\\.\\s)(?<!\\()\\b${acronym}\\b(?![)\\)])`, 'gi'); // Matches acronym preceded by ". ", avoiding parentheses
 
@@ -9270,23 +9308,25 @@ function removeQuestionMarkAtStart() {
     criteriaTextarea.value = content;
 }
 
-
 function removeNumbersInBrackets() {
-    // Get the textarea with ID "Criteria"
     const criteriaTextarea = document.getElementById('Criteria');
+    if (!criteriaTextarea) return;
 
-    // Get the current value of the textarea
     let content = criteriaTextarea.value;
 
-    // Define the regex pattern to match numbers or groups of numbers separated by commas within parentheses
-    const regex = /\(\s*\d+(\s*,\s*\d+)*\s*\)/g;
+    // Match (1, 2, 3), (3), etc.
+    const roundBracketRegex = /\(\s*\d+(?:\s*,\s*\d+)*\s*\)/g;
 
-    // Remove all occurrences of numbers or groups of numbers within parentheses
-    content = content.replace(regex, '');
+    // Match <1, 2, 3>, <3>, etc.
+    const angleBracketRegex = /<\s*\d+(?:\s*,\s*\d+)*\s*>/g;
 
-    // Set the updated content back to the textarea
+    // Remove all matches
+    content = content.replace(roundBracketRegex, '');
+    content = content.replace(angleBracketRegex, '');
+
     criteriaTextarea.value = content;
 }
+
 
 function removeLettersInBrackets() {
     // Get the textarea with ID "Criteria"
@@ -9479,7 +9519,7 @@ function highlightConditionalCapitalizeWords() {
         'romosozumab', 'adalimumab-adaz', 'topiramate', 'sumatriptan', 'dextran', 'idelalisib','diphenhydramine','famotidine',
         'vancomycin', 'daptomycin', 'ertapenem', 'thyrotoxic', 'extubation', 'elastogram',
         'arthropathy', 'hypercellularity', 'turbinates', 'gemtuzumab', 'infraumbilical',
-        'florbetapir', 'glipizide', 'esketamine', 'pregabalin', 'tramadol', 'autoleucel', 'blinatumomab', 'obecabtagene', 'cefdinir', 
+        'florbetapir', 'glipizide', 'esketamine', 'pregabalin', 'tramadol', 'autoleucel', 'blinatumomab', 'obecabtagene', 'cefdinir', 'etoposide', 
         'cariprazine', 'lurasidone', 'migrainous', 'ocrelizumab', 'cidofovir', 'phentermine', 'cemiplimab ', 'cetuximab ',
         'darlutamide', 'abiraterone', 'apalutamide', 'enzalutamide', 'crizotinib',
         'azacitidine', 'tenolysis', 'inclisiran', 'rituximab', 'venetoclax', 'methotrexate', 'fluorouracil',
@@ -10886,21 +10926,21 @@ function removeTrailingACriteria() {
 
     let text = textarea.value;
 
-    // 1. Remove words ending in capital A followed by specific phrases or punctuation
-    text = text.replace(/\b([a-z]+)A(?=\s*(MET|NOT MET|NOT APPLICABLE|[\.\!\?\n\r]|$))/gi, '$1');
+    // 1. Remove A if it comes right after a closing parenthesis — e.g., (urgent)A → (urgent)
+    text = text.replace(/(\([^)]+\))A\b/g, '$1');
 
-    // 2. Remove A after a closing parenthesis: e.g., (HVA)A → (HVA)
-    text = text.replace(/(\([A-Z]+\))A\b/g, '$1');
+    // 2. Remove A from end of any word if it's clearly a suffix tacked on (e.g., FatigueA → Fatigue)
+    // Only match if the word part is at least 3 characters to avoid removing from "A" or "MA" etc.
+    text = text.replace(/\b([A-Za-z]{3,})A\b/g, '$1');
 
-    // 3. Remove :A after a label
+    // 3. Remove :A (e.g., Label:A → Label:)
     text = text.replace(/(:)A\b/g, '$1');
 
-    // 4. Remove standalone capital A at the end of a line (with or without punctuation)
-    text = text.replace(/\s+A\s*$/gm, ''); // A at the end of line after space
+    // 4. Remove standalone capital A at end of line
+    text = text.replace(/\s+A\s*$/gm, '');
 
     textarea.value = text;
 }
-
 
 
 function hideEmptyAnswerboxes() {
@@ -11048,13 +11088,13 @@ function highlightNotMetPhrases() {
         "was not medically necessary", "were not medically necessary", "is not medically necessary", "are not medically necessary",
         "was not dentally necessary", "were not medically necessary", "is not dentally necessary", "are not dentally necessary",
         "is not considered medically necessary", "are not considered dentally necessary", "medical necessity is not met",
-		"is not necessary", "was not necessary", "are not necessary", "were not necessary", 
-		"is not medically appropriate", "was not medically appropriate", "are not medically appropriate", "were not medically appropriate", 
-        "does not meet medical necessity", "does not meet criteria", "does not meet the criteria", "was not necessary",
+        "is not necessary", "was not necessary", "are not necessary", "were not necessary",
+        "is not medically appropriate", "was not medically appropriate", "are not medically appropriate", "were not medically appropriate",
+        "does not meet medical necessity", "does not meet criteria", "does not meet the criteria", "was not necessary", "is not supported",
         "is not necessary", "is not generally accepted", "was not generally accepted", "is not considered medically necessary",
         "is not medically indicated", "was not medically indicated", "is not considered to be medically necessary",
         "cannot be approved", "do not meet", "does not meet", "is not", "are not", "not met", "was not", "were not", "not", "no"
-    ].sort((a, b) => b.length - a.length); // Match longer phrases first
+    ].sort((a, b) => b.length - a.length);
 
     const boxIds = Array.from({ length: 15 }, (_, i) => `answerbox${i + 1}`);
     boxIds.push("answerboxConclusion");
@@ -11068,17 +11108,13 @@ function highlightNotMetPhrases() {
     allBoxes.forEach(div => {
         if (!div || !div.innerHTML.trim()) return;
 
-        const lines = div.innerHTML.split(/<br\s*\/?>/i); // split at <br>
+        const lines = div.innerHTML.split(/<br\s*\/?>/i);
         let firstLine = lines[0];
 
-        // Don't highlight inside existing spans
         redPhrases.forEach(phrase => {
             const regex = new RegExp(`\\b(${escapeRegExp(phrase)})\\b`, 'gi');
-            firstLine = firstLine.replace(regex, (match, p1) => {
-                // Skip if already wrapped in a span
-                const spanCheck = new RegExp(`<span[^>]*>${escapeRegExp(p1)}<\/span>`, 'i');
-                if (spanCheck.test(firstLine)) return match;
-
+            firstLine = firstLine.replace(regex, (match, p1, offset) => {
+                if (isInsideSpan(firstLine, offset, match.length)) return match;
                 return `<span class="highlight-notmet">${p1}</span>`;
             });
         });
@@ -11090,18 +11126,24 @@ function highlightNotMetPhrases() {
     function escapeRegExp(str) {
         return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
+
+    function isInsideSpan(str, index, length) {
+        const before = str.slice(0, index);
+        const after = str.slice(index + length);
+        return before.lastIndexOf('<span') > before.lastIndexOf('</span>') && after.indexOf('</span>') > -1;
+    }
 }
 function highlightCertPhrases() {
     const greenPhrases = [
         "was medically necessary", "was generally accepted", "were medically necessary", "is medically necessary",
         "was dentally necessary", "were dentally necessary", "are dentally necessary", "medical necessity is met",
-		"is necessary", "was necessary", "are necessary", "were necessary", 
-		"is medically appropriate", "was medically appropriate", "are medically appropriate", "were medically appropriate", 
+        "is necessary", "was necessary", "are necessary", "were necessary","is supported",
+        "is medically appropriate", "was medically appropriate", "are medically appropriate", "were medically appropriate",
         "is medically indicated", "was medically indicated", "is considered to be medically necessary", "can be approved",
         "are medically necessary", "does meet medical necessity", "meets medical necessity", "meets the criteria",
         "meets criteria", "does meet", "do meet", "is necessary", "was necessary", "is generally accepted",
         "is considered medically necessary", "is met", "meets", "met", "yes"
-    ].sort((a, b) => b.length - a.length); // Match longer phrases first
+    ].sort((a, b) => b.length - a.length);
 
     const boxIds = Array.from({ length: 15 }, (_, i) => `answerbox${i + 1}`);
     boxIds.push("answerboxConclusion");
@@ -11115,16 +11157,13 @@ function highlightCertPhrases() {
     allBoxes.forEach(div => {
         if (!div || !div.innerHTML.trim()) return;
 
-        const lines = div.innerHTML.split(/<br\s*\/?>/i); // split at first <br>
+        const lines = div.innerHTML.split(/<br\s*\/?>/i);
         let firstLine = lines[0];
 
         greenPhrases.forEach(phrase => {
             const regex = new RegExp(`\\b(${escapeRegExp(phrase)})\\b`, 'gi');
-            firstLine = firstLine.replace(regex, (match, p1) => {
-                // Skip if already wrapped in a span
-                const spanCheck = new RegExp(`<span[^>]*>${escapeRegExp(p1)}<\/span>`, 'i');
-                if (spanCheck.test(firstLine)) return match;
-
+            firstLine = firstLine.replace(regex, (match, p1, offset) => {
+                if (isInsideSpan(firstLine, offset, match.length)) return match;
                 return `<span class="highlight-cert">${p1}</span>`;
             });
         });
@@ -11136,7 +11175,15 @@ function highlightCertPhrases() {
     function escapeRegExp(str) {
         return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
+
+    function isInsideSpan(str, index, length) {
+        const before = str.slice(0, index);
+        const after = str.slice(index + length);
+        return before.lastIndexOf('<span') > before.lastIndexOf('</span>') && after.indexOf('</span>') > -1;
+    }
 }
+
+
 
 
 function fixReferenceSpelling() {
@@ -11356,25 +11403,22 @@ function autoIQ() {
 
   let text = div.innerHTML;
 
-  // 0. Always change "CP:Procedures" to "CP: Procedures"
-  text = text.replace(/CP:Procedures/g, 'CP: Procedures');
-
-  // 0b. Add space after CP: if missing (e.g. "CP:Imaging" -> "CP: Imaging")
-  text = text.replace(/CP:(?!\s)/g, 'CP: ');
-
-  // 0c. Add space after LOC: if missing (e.g. "LOC:Home" -> "LOC: Home")
-  text = text.replace(/LOC:(?!\s)/g, 'LOC: ');
+  // 0. Ensure space after any colon (e.g., "X:Y" → "X: Y"), unless already followed by a space
+  text = text.replace(/(\b\w+):(?=\S)/g, '$1: ');
 
   // 1. Add comma before "Subset"
   text = text.replace(/\s+(Subset)/g, ', $1');
 
-  // 2. Remove any instance of "(1, 2, 3, 4, 5)" (and other digit variations)
+  // 2. Remove any instance of "(1, 2, 3, 4, 5)" and similar digit groups in parentheses
   text = text.replace(/\(\s*\d+(?:\s*,\s*\d+)*\s*\)/g, '');
 
-  // 3. Add comma before "Requested Service"
+  // 3. Also remove groups of numbers in angle brackets (e.g. "<1, 2, 3>" or "<3>")
+  text = text.replace(/<\s*\d+(?:\s*,\s*\d+)*\s*>/g, '');
+
+  // 4. Add comma before "Requested Service"
   text = text.replace(/\s+(Requested Service)/g, ', $1');
 
-  // 4. Add comma before "Recommendation"
+  // 5. Add comma before "Recommendation"
   text = text.replace(/\s+(Recommendation)/g, ', $1');
 
   // Apply the changes
@@ -11530,12 +11574,11 @@ function combineCriteriaText() {
   const lines = textarea.value.split('\n').map(line => line.trim());
   const combinedLines = [];
   let currentLine = '';
-  let currentPatternActive = false; // Tracks if current line started with enabled pattern
+  let currentPatternActive = false;
 
   // Checkbox states
   const isNumeric = document.getElementById('numericSplit')?.checked;
-  const isAlphaLower = document.getElementById('alphaLowerSplit')?.checked;
-  const isAlphaUpper = document.getElementById('alphaUpperSplit')?.checked;
+  const isAlpha = document.getElementById('alphaLowerSplit')?.checked; // controls both lowercase and uppercase
   const isRoman = document.getElementById('romanSplit')?.checked;
   const isParenNumeric = document.getElementById('parenNumericSplit')?.checked;
   const isLetterParen = document.getElementById('letterParenSplit')?.checked;
@@ -11543,34 +11586,32 @@ function combineCriteriaText() {
   const isQuestionMark = document.getElementById('questionMarkSplit')?.checked;
 
   // Regex patterns for each
-  const patternsMap = {
-    numeric: /^\d+\.\s+/,
-    alphaLower: /^[a-z]\.\s+/,
-    alphaUpper: /^[A-Z]\.\s+/,
-    roman: /^(i{1,3}|iv|v|vi{0,3}|ix|x)\.\s+/i,
-    parenNumeric: /^\d+\)\s+/,
-    letterParen: /^[a-zA-Z]\)\s+/,
-    symbol: /^[-•]\s*/,
-    questionMark: /^\?\s*/,
-  };
+const patternsMap = {
+  numeric: /^\d+\.\s+/,
+  alpha: /^[a-zA-Z]\.\s+/,
+  roman: /^(i{1,3}|iv|v|vi{0,3}|ix|x)\.\s+/i,
+  parenNumeric: /^\d+\)\s+/,
+  letterParen: /^[a-zA-Z]\)\s+/,
+  symbol: /^[-•o]\s+/,  // Updated here to include "o"
+  questionMark: /^\?\s*/,
+};
 
-  // Enabled patterns array for quick test
+
+  // Enabled patterns
   const enabledPatterns = [];
   if (isNumeric) enabledPatterns.push(patternsMap.numeric);
-  if (isAlphaLower) enabledPatterns.push(patternsMap.alphaLower);
-  if (isAlphaUpper) enabledPatterns.push(patternsMap.alphaUpper);
+  if (isAlpha) enabledPatterns.push(patternsMap.alpha);
   if (isRoman) enabledPatterns.push(patternsMap.roman);
   if (isParenNumeric) enabledPatterns.push(patternsMap.parenNumeric);
   if (isLetterParen) enabledPatterns.push(patternsMap.letterParen);
   if (isSymbol) enabledPatterns.push(patternsMap.symbol);
   if (isQuestionMark) enabledPatterns.push(patternsMap.questionMark);
 
-  // Helper to check if line starts with any enabled pattern
+  // Checkers
   function startsWithEnabled(line) {
     return enabledPatterns.some(re => re.test(line));
   }
 
-  // Helper to check if line starts with any known pattern (enabled or disabled)
   function startsWithAnyKnown(line) {
     return Object.values(patternsMap).some(re => re.test(line));
   }
@@ -11579,23 +11620,18 @@ function combineCriteriaText() {
     if (!line) continue;
 
     if (startsWithEnabled(line)) {
-      // New line starts with enabled pattern → push previous and start new
       if (currentLine) combinedLines.push(currentLine.trim());
       currentLine = line;
       currentPatternActive = true;
     } else if (startsWithAnyKnown(line)) {
-      // Line starts with a known pattern but NOT enabled → push previous line and this line separately
       if (currentLine) combinedLines.push(currentLine.trim());
-      combinedLines.push(line); // this line stands alone, no combining
+      combinedLines.push(line);
       currentLine = '';
       currentPatternActive = false;
     } else {
-      // Line does not start with any known pattern
       if (currentPatternActive && currentLine) {
-        // Append continuation line to current combined line
         currentLine += ' ' + line;
       } else {
-        // No current combined line or current is not active pattern → just push as its own line
         if (currentLine) combinedLines.push(currentLine.trim());
         currentLine = line;
         currentPatternActive = false;
@@ -11607,7 +11643,6 @@ function combineCriteriaText() {
 
   textarea.value = combinedLines.join('\n');
 }
-
 
 
 
