@@ -494,7 +494,7 @@ width:auto;
     border-radius: 5px;
 }
 .notestyleRed {
-  background-color: #f77c94;
+  background-color: #fc6883;
 }
 .notestyleExpand {
   background-color: #f08190;
@@ -679,7 +679,8 @@ width:auto;
 	display:inline;
 }
 .color-blue {
-   text-decoration: #87b5ff underline;
+   text-decoration: #bc57fa underline;
+     text-decoration-style: wavy;
    text-decoration-thickness: .12rem;
    	text-decoration-skip-ink: auto;
 		display:inline;
@@ -1151,8 +1152,8 @@ weight:heavy;
  <div id="NoteCriteria5" style="display:none;">- criteria with MET/NOT MET needed</div>
  <div id="NoteCriteria4" style="display:none;">- criteria needs to be addressed with patient rationale</div>
 <div id="NoteCriteria1" style="display:none;">- requires criteria summary</div>
-<div id="NoteCriteria2" style="display:none;">- does not need criteria list with MET/NOT MET</div>
-<div id="NoteCriteria3" style="display:none;">- does not want criteria list with MET/NOT MET</div>
+<div id="NoteCriteria2" style="display:none;">- does not need criteria list with met/not met</div>
+<div id="NoteCriteria3" style="display:none;">- does NOT want criteria list with met/not met</div>
 <div id="NoteMedWatch" style="display:none;">- cannot use InterQual criteria for industry standard guidelines review</div>
 <div id="misc6" style="display:none;">-&nbsp;</div>
 <div id="misc5" style="display:none;">- removed&nbsp;</div>
@@ -1393,7 +1394,7 @@ weight:heavy;
 <button onclick="toggleClient('GPTX'); restoreDisplay(); RecordListing();" class="buttonstyle_casenote notestyleYellow">G&P TX</button>
 
 
-<button onclick="toggleClient('BCBSTNUM'); restoreDisplay(); RecordListing(); " class="buttonstyle_casenote notestyleYellow">BCBSTN UM</button>
+<button onclick="toggleClient('BCBSTNUM'); restoreDisplay(); RecordListing(); " class="buttonstyle_casenote notestyleYellow SSO">BCBSTN UM</button>
 
 <button onclick="toggleClient('HPHCMA'); restoreDisplay(); RecordListing(); " class="buttonstyle_casenote notestyleYellow SSO">HPHC MA</button>
 <br>
@@ -3241,8 +3242,8 @@ EXPERIMENTAL OR INVESTIGATIVE- A treatment, procedure, facility, equipment, drug
 </div> 
 
 <div id="HMETNNV" class="ClientSelection">
-<div class ="ClientHeader"><b>Hometown Health HMETN NV</b></div>
- <div class="CaseHeader"style="background-color:#048267;">Special</div><Br>
+<div class ="ClientHeader"><b>Hometown Health HMETN NV</b> </div>
+ <div class="CaseHeader"style="background-color:#048267;">Special</div> <span class="SSOFS">Fully Insured: NV </span><Br>
 — Same-state license needed for all chiropractic cases. Sign-off is NOT allowed.<br>
 <div class="CaseHeader" style="background-color:#0069a1;">NRL</div><Br>
  
@@ -3563,7 +3564,8 @@ Experimental, Investigational, or Unproven means any drug, service, supply, care
 
 <div id="BCBSTNUM" class="ClientSelection">
 <div class ="ClientHeader"><b>BlueCross BlueShield Tennessee BCBSTN UM</b></div>
- <div class="CaseHeader"style="background-color:#048267;">Special</div><Br>
+ <div class="CaseHeader"style="background-color:#048267;">Special</div> <span class="SSOFS">Fully Insured: TN </span><Br>
+ — TN Same-state license needed for all initial adverse determination. Sign-off is not allowed.<br>
 — All MD opinion form needs to be reviewed by Dr. Sterling<br>
 — Approval on genetic test should  have P2P<br>
  
@@ -5649,6 +5651,7 @@ We carefully reviewed the information sent by your provider and the coverage cri
 
 </div>
 <center><button onclick="copyMFLContent(this);toggleVisible('NotePSRadvise');" class="buttonstyle_expand">Copy</button></center><br>
+
 <h1>Denial (Child)</h1>
 <div class="MFLbox" id="MFLGeneralDenialTargetChild">
 We carefully reviewed the information sent by your child's provider and the coverage criteria. Your child's doctor asked for **service in 6th grade language (exact service/request in medical terminology)**. This is to treat your child's **condition in 6th grade language (exact diagnosis in medical terminology)**. This request cannot be approved. According to ** Insert policy name here ** your child must **NOT MET  bullet points here in member friendly language**. Based on this, your child does not meet our requirements for this service (service), and your request is not approved for coverage. Please review this letter with your child's doctor to determine the next appropriate steps for your child's care.
@@ -5657,6 +5660,16 @@ We carefully reviewed the information sent by your child's provider and the cove
 
 
 </div>
+
+
+<div id="MFLGeneralChildDenial" style="display:none;">
+<h1>Denial (Child)</h1>
+<div class="MFLbox" id="MFLGeneralDenialTargetChild">
+We carefully reviewed the information sent by your child's provider and the coverage criteria. Your child's doctor asked for **service in 6th grade language (exact service/request in medical terminology)**. This is to treat your child's **condition in 6th grade language (exact diagnosis in medical terminology)**. This request cannot be approved. According to ** Insert policy name here ** your child must **NOT MET  bullet points here in member friendly language**. Based on this, your child does not meet our requirements for this service (service), and your request is not approved for coverage. Please review this letter with your child's doctor to determine the next appropriate steps for your child's care.
+</div>
+<center><button onclick="copyMFLContent(this);toggleVisible('NotePSRadvise');" class="buttonstyle_expand">Copy</button></center>
+
+
 <div id="MFLGeneralEI" style="display:none;">
 <h1>Experimental/Investigational</h1>
 
@@ -6013,13 +6026,7 @@ Id — Insurance ID<br>
 
 <br>
 <textarea id="Criteria" class="invisiblescroll" style="height:20rem;">
-1. CriteriaA MET
-2. Something (urgent)A MET
-3. Dyspnea <3>
 
-4. Label:A <1, 2, 3>
-5. Ending with A
-6. Something (E0745)A MET
 </textarea>
 
 <Br>
@@ -6641,6 +6648,7 @@ function convertTerms() {
 		"well established": "well-established",
 		"evidence based": "evidence-based",
 		"determination supported": "determination is supported",
+		"with family history": "with a family history",
 		"determination supported": "determination is supported",
 		"with speech delay": "with a speech delay",
 		"with review": "with a review",
@@ -7307,16 +7315,24 @@ function fixPhoneDateTimeFormat() {
 
     let content = phoneDiv.innerHTML;
 
-    // Normalize casing first: e.g. "4:00am" => "4:00 AM"
+    // Normalize casing: e.g. "4:00am" => "4:00 AM"
     content = content.replace(/\b(\d{1,2}:\d{2})\s?(am|pm)\b/gi, (match, time, period) => {
         return `${time} ${period.toUpperCase()}`;
     });
 
-    // Replace each MM/DD/YY + time pair
-    content = content.replace(/(\d{2}\/\d{2}\/\d{2})\s+(\d{1,2}:\d{2} (AM|PM))/g, (match, date, time, period, offset, string) => {
-        const before = string.slice(0, offset).trimEnd();
-        const atSentenceStart = before === '' || /[.!?]\s*$/.test(before);
+    // Replace MM/DD/YY + time, add "on" only if not already there
+    content = content.replace(/(\d{2}\/\d{2}\/\d{2})\s+(\d{1,2}:\d{2} (AM|PM))/g, (match, date, time, _, offset, string) => {
+        const before = string.slice(Math.max(0, offset - 10), offset).trim();
+
+        // Check if already preceded by "on" or "On"
+        if (/on$/i.test(before)) {
+            return `${date} at ${time}`;
+        }
+
+        // Capitalize "On" if at sentence start, else use lowercase "on"
+        const atSentenceStart = offset === 0 || /[.!?]\s*$/i.test(string.slice(0, offset));
         const onText = atSentenceStart ? 'On' : 'on';
+
         return `${onText} ${date} at ${time}`;
     });
 
@@ -7342,19 +7358,16 @@ function fixPhoneTimeFormat() {
 
   let text = div.innerHTML;
 
-  // 1. Skip conversion if already in H:MM AM/PM or HH:MM AM/PM
-  const timeWithMinutesRegex = /\b\d{1,2}:\d{2}\s?(AM|PM)\b/i;
-
-  // Convert "2PM" or "1 PM" → "1:00 PM", but DO NOT touch if part of "1:00 PM"
-  text = text.replace(/\b(\d{1,2})\s?(AM|PM)\b/g, (match, hour, ampm, offset, string) => {
-    const before = string.slice(Math.max(0, offset - 3), offset + match.length + 3);
-    if (/\d{1,2}:\d{2}\s?(AM|PM)/i.test(before)) return match;
-    return `${hour}:00 ${ampm.toUpperCase()}`;
+  // 1. Normalize "4am" to "4:00 AM", but skip if part of "4:00 AM"
+  text = text.replace(/\b(\d{1,2})(?=\s?(AM|PM)\b)/gi, (match, hour, offset, string) => {
+    const after = string.slice(offset, offset + 8); // Check a few chars after
+    if (/\d{1,2}:\d{2}\s?(AM|PM)/i.test(after)) return match; // already valid
+    return `${hour}:00`;
   });
 
-  // ✅ Only convert if number is directly followed by AM or PM (e.g. "4 AM")
-  text = text.replace(/\b(1[0-2]|[1-9])\s?(AM|PM)\b/gi, (match, hour, ampm) => {
-    return `${hour}:00 ${ampm.toUpperCase()}`;
+  // 2. Normalize "4:00am" → "4:00 AM"
+  text = text.replace(/\b(\d{1,2}:\d{2})\s?(am|pm)\b/gi, (_, time, period) => {
+    return `${time} ${period.toUpperCase()}`;
   });
 
   div.innerHTML = text;
@@ -8038,50 +8051,45 @@ function highlightProblematicPhrases() {
         "can you determine", "should not be", "is there", "are there", "does it", "do you",
         "is CPT", "do you find", "are CPT", "are the", "was the", "please review", "did have", "is",
         "are", "does", "did this", "would the", "would", "is it consistent", "please advise"
-    ].sort((a, b) => b.length - a.length); // Longest phrases first
+    ].sort((a, b) => b.length - a.length);
 
     const boxIds = Array.from({ length: 15 }, (_, i) => `answerbox${i + 1}`);
     boxIds.push("answerboxConclusion");
 
     const mflBoxes = Array.from(document.querySelectorAll('.MFLbox'));
-
     const allBoxes = [
-        ...boxIds.map(id => document.getElementById(id)).filter(el => el),
+        ...boxIds.map(id => document.getElementById(id)).filter(Boolean),
         ...mflBoxes
     ];
 
     allBoxes.forEach(div => {
-        if (!div || div.innerHTML.trim() === '') return;
+        if (!div || !div.innerHTML.trim()) return;
 
         const lines = div.innerHTML.split(/<br\s*\/?>/i);
-        const originalLine = lines[0];
+        let firstLine = lines[0];
 
-        // Create a clean version of the line without spans for matching
-        let searchLine = originalLine.replace(/<span[^>]*>.*?<\/span>/gi, match => ' '.repeat(match.length));
-
-        let result = originalLine;
+        // Prevent double-wrapping: remove existing highlight-error spans temporarily
+        const placeholderMap = [];
+        firstLine = firstLine.replace(/<span class="highlight-error">(.*?)<\/span>/gi, (_, content) => {
+            const token = `{{__PLACEHOLDER_${placeholderMap.length}__}}`;
+            placeholderMap.push({ token, content });
+            return token;
+        });
 
         phrases.forEach(phrase => {
             const regex = new RegExp(`\\b(${escapeRegExp(phrase)})\\b`, 'gi');
-            let match;
-            while ((match = regex.exec(searchLine)) !== null) {
-                const start = match.index;
-                const end = start + match[0].length;
-
-                const before = result.slice(0, start);
-                const target = result.slice(start, end);
-                const after = result.slice(end);
-
-                result = before + `<span class="highlight-error">${target}</span>` + after;
-
-                // Mask the match so it won't be replaced again
-                searchLine = searchLine.slice(0, start) + ' '.repeat(match[0].length) + searchLine.slice(end);
-
-                break; // Prevent wrapping same phrase multiple times
-            }
+            firstLine = firstLine.replace(regex, (match) => {
+                // Only wrap if not already inside a span (from placeholder logic)
+                return `<span class="highlight-error">${match}</span>`;
+            });
         });
 
-        div.innerHTML = [result, ...lines.slice(1)].join('<br>');
+        // Restore previously existing highlight-error spans
+        placeholderMap.forEach(({ token, content }) => {
+            firstLine = firstLine.replace(token, `<span class="highlight-error">${content}</span>`);
+        });
+
+        div.innerHTML = [firstLine, ...lines.slice(1)].join('<br>');
     });
 
     function escapeRegExp(str) {
@@ -8621,6 +8629,7 @@ function expandAcronyms() {
       "IVIG": { expanded: false, fullForm: "intravenous immunoglobulin (IVIG)" },
       "DVT": { expanded: false, fullForm: "deep vein thrombosis (DVT)" },
       "DCIS": { expanded: false, fullForm: "ductal carcinoma in situ (DCIS)" },
+      "ACDF": { expanded: false, fullForm: "anterior cervical discectomy and fusion (ACDF)" },
       "SMA": { expanded: false, fullForm: "spinal muscular atrophy (SMA)" },
       "BMT": { expanded: false, fullForm: "bone marrow transplant (BMT)" },
       "CVA": { expanded: false, fullForm: "cerebrovascular accident (CVA)" },
@@ -8733,7 +8742,7 @@ function addTheBeforeOrg() {
     acronyms.forEach(acronym => {
       const regex = new RegExp(
         // Negative lookbehind: skip if preceded by ( or words like "the", "current", etc.
-        `(?<!\\b(?:the|current|and|no|an|these|are|not|recent|endorse|is)\\s)(?<!\\()\\b(${acronym})\\b`, 
+        `(?<!\\b(?:the|current|and|no|an|these|are|not|recent|US|endorse|is)\\s)(?<!\\()\\b(${acronym})\\b`, 
         'gi'
       );
 
@@ -8861,7 +8870,7 @@ function expandTermsThe() {
     // Replace acronyms with their expansions while preserving existing spans
     Object.keys(expansions).forEach(acronym => {
       // Define regex patterns to match the acronym, avoiding parentheses
-      const regex1 = new RegExp(`(?<!PET/|[/.]\\s|\\b(?:the|this|medical|and|body|prior|chest|leg|lung|legs|brain|liver|abdomen|pelvis|arms|hand|back|pelvis|hip|sinus|head|shoulder|monitoring|joint|documented|screening|equivocal|pelvic|consider|supports|abdominal|performed|repeat|cervical|lungs|plain|wrist|knee|requested|recommended|these|contrast|up|ankle|an|previous|lumbar|criteria|is|spine|thoracic|neck|multiple|beam|heart|that|a|surveillance|as|spinal|his|her|their|negative|breast|standard|recent|preoperative|elbow|dental|foot|getting|yearly|over|submitted|over|another|updated|outpatient|inpatient|had|routine|dual|for|dose|thumb|panoramic|no|initial|abnormal|cardiac|formal)\\s)(?<!\\()\\b${acronym}\\b(?![)\\)])`, 'gi');
+      const regex1 = new RegExp(`(?<!PET/|[/.]\\s|\\b(?:the|this|medical|and|body|prior|chest|leg|lung|legs|brain|liver|abdomen|pelvis|arms|hand|back|pelvis|hip|sinus|head|shoulder|monitoring|joint|documented|screening|dated|equivocal|pelvic|consider|supports|abdominal|performed|repeat|cervical|lungs|plain|wrist|knee|requested|recommended|these|contrast|up|ankle|an|previous|lumbar|criteria|is|spine|thoracic|neck|multiple|beam|heart|that|a|surveillance|as|spinal|his|her|their|negative|breast|standard|recent|preoperative|elbow|dental|foot|getting|yearly|over|submitted|over|another|updated|outpatient|inpatient|had|routine|dual|for|dose|thumb|panoramic|no|initial|abnormal|cardiac|formal)\\s)(?<!\\()\\b${acronym}\\b(?![)\\)])`, 'gi');
 
       const regex2 = new RegExp(`(\\.\\s)(?<!\\()\\b${acronym}\\b(?![)\\)])`, 'gi'); // Matches acronym preceded by ". ", avoiding parentheses
 
@@ -9477,20 +9486,20 @@ function highlightAlwaysCapitalizeWords() {
         'Ajovy', 'Emgality', 'Qulipta', 'Invitae', 'Dupuytren', 'Norco', 'Dextenza', 'Enstilar','Cyltezo','Briumvi',
 		
 		
-        'Rexulti', 'Basaglar', 'PediaSure', 'Briviact', 'Jardiance', 'Contrave', 'Mounjaro', 'Humira', 'Phesgo',
+        'Rexulti', 'Basaglar', 'PediaSure', 'Briviact', 'Jardiance', 'Contrave', 'Mounjaro', 'Humira', 'Phesgo', 'Avonex',
 		  'Nplate', 'Sotyktu', 'Mekinist', 'Copaxone', 'Vumerity', 'Kesimpta', 'Ocrevus', 'Xyosted',
 		  'Symbicort', 'Ubrelvy', 'QuilliChew', 'Eucrisa', 'Opzelura', 'Entyvio', 'Vraylar', 'Keytruda',
 		 'Ocrevuse', 'Nubeqa', 'Lamictal', 'Strensiq', 'Xalkori',
-		 'Admelog', 'Perjeta', 'Herceptin', 'Tresiba', 'NovoLog', 'Paxil', 'Depakote', 'Zepbound', 'Tradjenta', 'Xembify', 'Soliris', 'Xhance', 'Toujeo', 'Lyumjev', 'Firmagon', 'Firazyr', 'Takhzyro', 'Fioricet', 'Imitrex', 'Topamax', 'Nurtec', 'Nasonex', 'Omnaris', 'Dymista', 'Krazati', 'Orgovyx', 'Tagrisso', 'Prolia', 'Zavzpret', 'Apretude', 'Arava', 'Ibrance', 'XELOX', 'Tavneos', 'Reclast', 'Ambien', 'Femara', 'Celebrex', 'Maxipime', 'Wakix', 'Lupkynis', 'Quviviq', 'Vtama', 'Actemra', 'Taxotere', 'Estrace', 'Tivdak', 'Tyenne', 'Benlysta', 'Iressa', 'Caplyta', 'Soltamox', 'Toradol', 'Nurtec', 'Topamax', 'Maxalt','Symtuza',
+		 'Admelog', 'Perjeta', 'Herceptin', 'Tresiba', 'NovoLog', 'Paxil', 'Depakote', 'Zepbound', 'Tradjenta', 'Xembify', 'Soliris', 'Xhance', 'Toujeo', 'Lyumjev', 'Firmagon', 'Firazyr', 'Takhzyro', 'Fioricet', 'Imitrex', 'Topamax', 'Nurtec', 'Nasonex', 'Omnaris', 'Dymista', 'Krazati', 'Orgovyx', 'Tagrisso', 'Prolia', 'Zavzpret', 'Apretude', 'Arava', 'Ibrance', 'XELOX', 'Tavneos', 'Reclast', 'Ambien', 'Femara', 'Celebrex', 'Maxipime', 'Wakix', 'Lupkynis', 'Quviviq', 'Vtama', 'Actemra', 'Taxotere', 'Estrace', 'Tivdak', 'Tyenne', 'Benlysta', 'Iressa', 'Caplyta', 'Soltamox', 'Toradol', 'Nurtec', 'Topamax', 'Maxalt','Symtuza','Encelto','Rhopressa','Alphagan',
         'Xyzal', 'Dupixent', 'Xolair', 'Belbuca', 'Avastin', 'Lonsurf', 'Evenity', 'Plaquenil',
         'Indocin', 'Flagyl', 'Levaquin', 'Zosyn', 'Xyrem', 'Xarelto', 'Invega', 'Sustenna',
         'Astelin', 'Dosepak', 'Nutramigen', 'Mylotarg', 'Varithena', 'Harvoni', 'Neupogen',
         'Flexeril', 'Dilaudid', 'Durolane', 'Aquacel', 'Zyvox', 'Grafix', 'Cardene', 'Inflectra',
         'Prolastin', 'Breztri', 'Gaenslen', 'Elidel', 'Amjevita', 'Hadlima', 'Renflexis', 'Megace',
         'Injectafer', 'Zometa', 'Cosentyx', 'Soolantra', 'Avsola', 'Pegasys', 'Therapeutix',
-        'Taclonex', 'Kenalog', 'Rinvoq', 'Eucrisa', 'Imuran', 'Intracept', 'CellCept', 'Rituxan','Gazyva',
+        'Taclonex', 'Kenalog', 'Rinvoq', 'Eucrisa', 'Imuran', 'Intracept', 'CellCept', 'Rituxan','Gazyva','Tyrvaya','Betaseron','Repatha','Aubagio','Gilenya','Plegridy',
         'Xeomin', 'Vyepti', 'Ruxience', 'Truxima', 'Riabni', 'Tylenol', 'Gammagard', 'Lexapro',
-        'Cymbalta', 'Remeron', 'Tremfya', 'Ofev', 'Supprelin', 'Aimovig', 'Zarxio', 'Fulphila','Hibiclens',
+        'Cymbalta', 'Remeron', 'Tremfya', 'Ofev', 'Supprelin', 'Aimovig', 'Zarxio', 'Fulphila','Hibiclens','Ferrlecit',
         'Feraheme', 'Zoloft', 'Darzalex', 'Ativan', 'Abraxane', 'Vistaril', 'Synthroid', 'Slynd',
         'Clomid', 'Keppra', 'Lexette', 'Enbrel', 'Hyrimoz', 'Otezla', 'VESIcare', 'Myrbetriq', 'Effexor','Monoferric','Infed','Adbry','Flomax', 'Dayvigo', 'Flomax', 'Dayvigo',
         'Wellbutrin', 'Seroquel', 'TheraSKin', 'Euflexxa', 'Skyrizi', 'Stelara', 'Antivert', 'Actos', 'Adcirca', 'Advair', 'Afrin', 'Airsupra', 'Allegra', 'Alrex', 'Amtagvi', 'Androderm', 'Auvelity', 'Augmentin', 'Balcoltra', 'Breo', 'Brukinsa', 'Bimzelx', 'Casgevy', 'Cimzia', 'Claritin', 'Colazal', 'Compazine', 'Descovy', 'DuoNeb', 'Ebglyss', 'Edarbi', 'Entresto', 'Epclusa', 'Erleada', 'Excedrin', 'Fabrazyme', 'Faslodex', 'Firdapse', 'Flonase', 'Furoscix', 'Gelsyn', 'GenVisc', 'Gocovri', 'Haegarda', 'Iluvien', 'Imcivree', 'Inbrija', 'Inlyta', 'Invokana', 'Iveric', 'Itovebi', 'Janumet', 'Januvia', 'Jatenzo', 'Kadcyla', 'Kerendia', 'Kevzara', 'Korlym', 'Lantus', 'Lialda', 'Lovenox', 'Mavyret', 'Miebo', 'Mestinon', 'Motrin', 'Mvasi', 'Nexletol', 'Nuedexta', 'Nucala', 'Octagam', 'Ohtuvayre', 'Olumiant', 'FOLFIRINOX', 'Onfi', 'Opdivo', 'Orencia', 'Orserdu', 'Orthovisc', 'Ozempic', 'Ozurdex', 'Pataday', 'Pemgarda', 'Phenergan', 'Praluent', 'Prevymis', 'Privigen', 'Prometrium', 'Qelbree', 'Qvar', 'Radicava', 'Reglan', 'Relistor', 'Relpax', 'Restasis', 'Retacrit', 'Rhofade', 'Rybelsus', 'Rytary', 'Saphnelo', 'Sensimist', 'Sinemet', 'Singulair', 'Spravato', 'Steglatro', 'Sublocade', 'Sunosi', 'Talicia', 'Taltz', 'Tarpeyo', 'Tecartus', 'Tepezza', 'Tezspire', 'Tirosint', 'Trulicity', 'Uloric', 'Unithroid', 'Vabysmo', 'Vectibix', 'Velcade', 'Vemlidy', 'Venclexta', 'Ventolin', 'Verquvo', 'Verzenio', 'Viberzi', 'Victoza', 'Voquezna', 'Voltaren', 'Wegovy', 'Winlevi', 'Xcopri', 'Xeljanz', 'Xgeva', 'Xiidra', 'Xywav', 'Yervoy', 'Zeposia', 'Zofran', 'Zoryve', 'Zyrtec',
@@ -9517,7 +9526,7 @@ function highlightAlwaysCapitalizeWords() {
 function highlightConditionalCapitalizeWords() {
     const wordsToCapitalizeAfterPeriod = [
         'capecitabine', 'oxaliplatin', 'onabotulinumtoxinA', 'pegfilgrastim', 'ibrutinib',
-        'romosozumab', 'adalimumab-adaz', 'topiramate', 'sumatriptan', 'dextran', 'idelalisib','diphenhydramine','famotidine',
+        'romosozumab', 'adalimumab-adaz', 'topiramate', 'sumatriptan', 'dextran', 'idelalisib','diphenhydramine','famotidine','encorafenib','panitumumab',
         'vancomycin', 'daptomycin', 'ertapenem', 'thyrotoxic', 'extubation', 'elastogram',
         'arthropathy', 'hypercellularity', 'turbinates', 'gemtuzumab', 'infraumbilical',
         'florbetapir', 'glipizide', 'esketamine', 'pregabalin', 'tramadol', 'autoleucel', 'blinatumomab', 'obecabtagene', 'cefdinir', 'etoposide', 
@@ -11091,7 +11100,7 @@ function highlightNotMetPhrases() {
         "is not considered medically necessary", "are not considered dentally necessary", "medical necessity is not met",
         "is not necessary", "was not necessary", "are not necessary", "were not necessary",
         "is not medically appropriate", "was not medically appropriate", "are not medically appropriate", "were not medically appropriate",
-        "does not meet medical necessity", "does not meet criteria", "does not meet the criteria", "was not necessary", "is not supported",
+        "does not meet medical necessity", "does not meet criteria", "does not meet the criteria", "was not necessary", "is not supported","does not", 
         "is not necessary", "is not generally accepted", "was not generally accepted", "is not considered medically necessary",
         "is not medically indicated", "was not medically indicated", "is not considered to be medically necessary",
         "cannot be approved", "do not meet", "does not meet", "is not", "are not", "not met", "was not", "were not", "not", "no"
@@ -11140,10 +11149,10 @@ function highlightCertPhrases() {
         "was dentally necessary", "were dentally necessary", "are dentally necessary", "medical necessity is met",
         "is necessary", "was necessary", "are necessary", "were necessary","is supported",
         "is medically appropriate", "was medically appropriate", "are medically appropriate", "were medically appropriate",
-        "is medically indicated", "was medically indicated", "is considered to be medically necessary", "can be approved",
+        "is medically indicated", "was medically indicated", "is considered to be medically necessary", "can be approved", "are considered to be medically necessary",
         "are medically necessary", "does meet medical necessity", "meets medical necessity", "meets the criteria",
         "meets criteria", "does meet", "do meet", "is necessary", "was necessary", "is generally accepted",
-        "is considered medically necessary", "is met", "meets", "met", "yes"
+        "is considered medically necessary", "are considered medically necessary", "is met", "meets", "met", "yes"
     ].sort((a, b) => b.length - a.length);
 
     const boxIds = Array.from({ length: 15 }, (_, i) => `answerbox${i + 1}`);
