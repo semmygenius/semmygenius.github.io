@@ -494,7 +494,7 @@ width:auto;
     border-radius: 5px;
 }
 .notestyleRed {
-  background-color: #fc6883;
+  background-color: #f77c94;
 }
 .notestyleExpand {
   background-color: #f08190;
@@ -1176,6 +1176,7 @@ weight:heavy;
 <div id="NoteInfo1" style="display:none;">- info from appeal letter cannot be accepted w/o clinical record</div>
 <div id="NoteInfo2" style="display:none;">- info from P2P cannot be accepted w/o clinical record</div>
 
+<div id="NoteCQAMFL" style="display:none;">- CQA - only MFL needed</div>
 
 <div id="NoteSOTUnclear" style="display:none;">- check *** sentence</div>
 
@@ -1589,6 +1590,7 @@ weight:heavy;
 
 <br>
 <div id="answerbox1" class="answerbox invisiblescroll AllText" contenteditable="true">
+
 </div>
 	<div></div>
 <span class="number" style="background-color: #71bd75;">
@@ -2009,7 +2011,7 @@ weight:heavy;
 <button onclick="toggleDisplay('NoteSOTtoNoGender');" class="buttonstyle_location notestyle_EOF">no Gender</button>
 <button onclick="toggleDisplay('NoteSOTtoNoAge');" class="buttonstyle_location notestyle_EOF">no Age</button>
 <button onclick="toggleDisplay('NoteSOTUnclear');" class="buttonstyle_location notestyle_EOF">check</button>
-
+<button onclick="toggleDisplay('NoteCQAMFL');" class="buttonstyle_location notestyle_EOF">CQA - MFL</button>
 <div class="checkcontainer" id="genderContainer" style="width: auto; display: inline; vertical-align:top; margin-top:.1rem;">
 
 </div>
@@ -3512,6 +3514,8 @@ Experimental, Investigational, or Unproven means any drug, service, supply, care
 — If both policy and MCG are submitted, must address the policy first. If the policy is not applicable, then reviewer can address the MCG.<Br>
 — No exception to criteria<br>
 <div class="CaseHeader"style="background-color:#b884b3;">Reference</div><br>
+<span onclick="toggleDisplay('UMROHFlag1')" class="flag" >🚩</span> Requires at least 2 new references to support definition of plan language.<br>
+
 <span onclick="toggleDisplay('NoteRefRemovedCitations')" class="flag" class="flag" >🚩</span>Remove all non-criteria citations on approval or denial on policy. <br>
 
 </div>  
@@ -6862,7 +6866,8 @@ htmlContent = htmlContent.replace(/(\b[a-zA-Z0-9]{1,2})<span class="color-green"
 		htmlContent = htmlContent.replace(/\(PT, <span class="color-blue">occupational therapy \(OT\)<\/span>, ST\)/gi, '(PT, OT, ST)');
 		
         htmlContent = htmlContent.replace(/current <span class="color-green">the/g, 'current');
-        htmlContent = htmlContent.replace(/Current <span class="color-green">The/g, 'Current');
+  htmlContent = htmlContent.replace(/meet <span class="color-blue">acute lymphocytic leukemia \(ALL\)<\/span>/g, 'meet ALL');
+
         htmlContent = htmlContent.replace(/the <span class="color-green"><span class="color-green">the CT<\/span> scan<\/span>/g, '<span class="color-green">the CT scan</span>');
 
         htmlContent = htmlContent.replace(/the <span class="color-green"><span class="color-green">the PET<\/span> scan<\/span>/g, '<span class="color-green">the PET scan</span>');	
@@ -7358,20 +7363,20 @@ function fixPhoneTimeFormat() {
 
   let text = div.innerHTML;
 
-  // 1. Normalize "4am" to "4:00 AM", but skip if part of "4:00 AM"
-  text = text.replace(/\b(\d{1,2})(?=\s?(AM|PM)\b)/gi, (match, hour, offset, string) => {
-    const after = string.slice(offset, offset + 8); // Check a few chars after
-    if (/\d{1,2}:\d{2}\s?(AM|PM)/i.test(after)) return match; // already valid
-    return `${hour}:00`;
+  // 1. Fix "7:11am" or "7:11 am" → "7:11 AM"
+  text = text.replace(/\b(\d{1,2}:\d{2})\s*(am|pm)\b/gi, (_, time, period) => {
+    return `${time} ${period.toUpperCase()}`;
   });
 
-  // 2. Normalize "4:00am" → "4:00 AM"
-  text = text.replace(/\b(\d{1,2}:\d{2})\s?(am|pm)\b/gi, (_, time, period) => {
-    return `${time} ${period.toUpperCase()}`;
+  // 2. Fix "7am" or "7 am" → "7:00 AM"
+  // Only match if NOT immediately preceded by a digit + colon (e.g. 7:11 AM)
+  text = text.replace(/(?<!\d:)\b(\d{1,2})\s*(am|pm)\b/gi, (_, hour, period) => {
+    return `${hour}:00 ${period.toUpperCase()}`;
   });
 
   div.innerHTML = text;
 }
+
 
 
 function addAMPMtoBareTimes() {
@@ -8068,34 +8073,30 @@ function highlightProblematicPhrases() {
         const lines = div.innerHTML.split(/<br\s*\/?>/i);
         let firstLine = lines[0];
 
-        // Prevent double-wrapping: remove existing highlight-error spans temporarily
-        const placeholderMap = [];
-        firstLine = firstLine.replace(/<span class="highlight-error">(.*?)<\/span>/gi, (_, content) => {
-            const token = `{{__PLACEHOLDER_${placeholderMap.length}__}}`;
-            placeholderMap.push({ token, content });
-            return token;
-        });
-
         phrases.forEach(phrase => {
             const regex = new RegExp(`\\b(${escapeRegExp(phrase)})\\b`, 'gi');
-            firstLine = firstLine.replace(regex, (match) => {
-                // Only wrap if not already inside a span (from placeholder logic)
-                return `<span class="highlight-error">${match}</span>`;
+            firstLine = firstLine.replace(regex, (match, p1, offset) => {
+                if (isInsideSpan(firstLine, offset, match.length)) return match;
+                return `<span class="highlight-error">${p1}</span>`;
             });
         });
 
-        // Restore previously existing highlight-error spans
-        placeholderMap.forEach(({ token, content }) => {
-            firstLine = firstLine.replace(token, `<span class="highlight-error">${content}</span>`);
-        });
-
-        div.innerHTML = [firstLine, ...lines.slice(1)].join('<br>');
+        lines[0] = firstLine;
+        div.innerHTML = lines.join('<br>');
     });
 
     function escapeRegExp(str) {
         return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
+
+    function isInsideSpan(str, index, length) {
+        const before = str.slice(0, index);
+        const after = str.slice(index + length);
+        return before.lastIndexOf('<span') > before.lastIndexOf('</span>') && after.indexOf('</span>') > -1;
+    }
 }
+
+
 let isReplaced = false;
 
 function replaceTabs(text) {
@@ -9483,7 +9484,7 @@ function drugCheck() {
 function highlightAlwaysCapitalizeWords() {
     const wordsToAlwaysCapitalize = [
         'Venofer', 'Miralax', 'Trulance', 'Linzess', 'Amitiza', 'Ibsrela', 'Robaxin', 'Botox','InterQual','Jadenu','Zynteglo','clonoSEQ',
-        'Ajovy', 'Emgality', 'Qulipta', 'Invitae', 'Dupuytren', 'Norco', 'Dextenza', 'Enstilar','Cyltezo','Briumvi',
+        'Ajovy', 'Emgality', 'Qulipta', 'Invitae', 'Dupuytren', 'Norco', 'Dextenza', 'Enstilar','Cyltezo','Briumvi','Voquenza',
 		
 		
         'Rexulti', 'Basaglar', 'PediaSure', 'Briviact', 'Jardiance', 'Contrave', 'Mounjaro', 'Humira', 'Phesgo', 'Avonex',
@@ -10936,11 +10937,14 @@ function removeTrailingACriteria() {
 
     let text = textarea.value;
 
+    // 0. Remove A if it comes right after a closing square bracket — e.g., [Fatigue]A → [Fatigue]
+    text = text.replace(/(\[[^\]]+\])A\b/g, '$1');
+
     // 1. Remove A if it comes right after a closing parenthesis — e.g., (urgent)A → (urgent)
     text = text.replace(/(\([^)]+\))A\b/g, '$1');
 
     // 2. Remove A from end of any word if it's clearly a suffix tacked on (e.g., FatigueA → Fatigue)
-    // Only match if the word part is at least 3 characters to avoid removing from "A" or "MA" etc.
+    // Only match if the word part is at least 3 characters
     text = text.replace(/\b([A-Za-z]{3,})A\b/g, '$1');
 
     // 3. Remove :A (e.g., Label:A → Label:)
@@ -11151,7 +11155,7 @@ function highlightCertPhrases() {
         "is medically appropriate", "was medically appropriate", "are medically appropriate", "were medically appropriate",
         "is medically indicated", "was medically indicated", "is considered to be medically necessary", "can be approved", "are considered to be medically necessary",
         "are medically necessary", "does meet medical necessity", "meets medical necessity", "meets the criteria",
-        "meets criteria", "does meet", "do meet", "is necessary", "was necessary", "is generally accepted",
+        "meets criteria", "does meet", "do meet", "is necessary", "was necessary", "is generally accepted", "are generally accepted",
         "is considered medically necessary", "are considered medically necessary", "is met", "meets", "met", "yes"
     ].sort((a, b) => b.length - a.length);
 

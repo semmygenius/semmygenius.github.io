@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes</title>
+<script>
+function toggleDisplay(id) {
+    var element = document.getElementById(id);
+    if (element) {
+        element.style.display = (element.style.display === 'none') ? '' : 'none';
+    }
+}
+
+function toggleDisplayEdits(id) {
+    var element = document.getElementById(id);
+    if (element) {
+        element.style.display = (element.style.display === 'none') ? 'inline-block' : 'none';
+    }
+}
+
+
+
+
+  function toggleVisible(elementId) {
+            var element = document.getElementById(elementId);
+            if (element.style.display === "none" || element.style.display === "") {
+                element.style.display = "block";
+            }
+            // If the element is already visible, do nothing
+        }
+function toggleHide(elementId) {
+    var element = document.getElementById(elementId);
+
+    // Hide the element if it is currently visible
+    if (element.style.display !== "none") {
+        element.style.display = "none";
+    }
+    // If the element is already hidden, do nothing
+}
+
+
+function toggleDisplayDropDownPanel(select) {
+    const selectedValue = select.value;
+
+    if (!selectedValue) return; // Ignore if no valid option is selected
+
+    // Custom behavior when Extra6 is selected
+    if (selectedValue === "Extra6") {
+        toggleDisplayById("Extra6");
+        toggleDisplayById("Extra7");
+    } else {
+        toggleDisplayById(selectedValue);
+    }
+
+    // Reset the dropdown selection back to its default (empty) option
+    select.selectedIndex = 0;
+}
+
+function toggleDisplayById(id) {
+    const element = document.getElementById(id);
+    if (element) {
+        const isCurrentlyVisible = element.style.display === "block";
+        element.style.display = isCurrentlyVisible ? "none" : "block";
+    }
+}
+
+
+
+
+function toggleDisplayDropDown(select) {
+    const selectedValue = select.value;
+
+    if (!selectedValue) return; // Ignore if no valid option is selected
+
+    // Get the selected element
+    const element = document.getElementById(selectedValue);
+
+    // If the element is already visible, hide it
+    if (element && element.style.display === "block") {
+        element.style.display = "none";
+    } else {
+        // Hide all other elements first
+        const allElements = document.querySelectorAll('#NoteMFL1, #NoteMFL2, #NoteMFL3, #NoteMFL4, #NoteMFL5');
+        allElements.forEach(el => el.style.display = "none");
+
+        // Show the selected element
+        if (element) {
+            element.style.display = "block";
+        }
+    }
+
+    // Reset the dropdown selection back to its default (empty) option
+    select.selectedIndex = 0; // Reset to first option (empty)
+}
+
+
+function toggleDisplayDropDownSSO(select) {
+    const selectedValue = select.value;
+
+    if (!selectedValue) return; // Ignore if no valid option is selected
+
+    // Get the selected element
+    const element = document.getElementById(selectedValue);
+
+    // If the element is already visible, hide it
+    if (element && element.style.display === "block") {
+        element.style.display = "none";
+    } else {
+        // Hide all other elements first
+        const allElements = document.querySelectorAll('#NoteSSO1, #NoteSSO2, #NoteSSO3, #NoteSSO4');
+        allElements.forEach(el => el.style.display = "none");
+
+        // Show the selected element
+        if (element) {
+            element.style.display = "block";
+        }
+    }
+
+    // Reset the dropdown selection back to its default (empty) option
+    select.selectedIndex = 0; // Reset to first option (empty)
+}
+
+
+function toggleDisplayDropDownP2P(select) {
+    const selectedValue = select.value;
+
+    if (!selectedValue) return; // Ignore if no valid option is selected
+
+    // Get the selected element
+    const element = document.getElementById(selectedValue);
+
+    // If the element is already visible, hide it
+    if (element && element.style.display === "block") {
+        element.style.display = "none";
+    } else {
+        // Hide all other elements first
+        const allElements = document.querySelectorAll('#NoteP2P1, #NoteP2P2, #NoteP2P3, #NoteP2P4, #NoteP2P5, #NoteP2P6, #NoteP2P7, #NoteP2P8, #NoteP2P9');
+        allElements.forEach(el => el.style.display = "none");
+
+        // Show the selected element
+        if (element) {
+            element.style.display = "block";
+        }
+    }
+
+   // Reset the dropdown selection back to its default (empty) option
+    select.selectedIndex = 0; // Reset to first option (empty)
+}
+
+	
+function toggleDisplayDropDownLock(select) {
+    const selectedValue = select.value;
+
+    if (!selectedValue) return; // Ignore if no valid option is selected
+
+    // Get the selected element
+    const element = document.getElementById(selectedValue);
+
+    // If the element is already visible, hide it
+    if (element && element.style.display === "block") {
+        element.style.display = "none";
+    } else {
+        // Hide all other elements first
+        const allElements = document.querySelectorAll('#NoteLock1, #NoteLock2, #NoteLock3, #NoteLock4, #NoteLock5, #NoteLock6, #NoteLock7');
+        allElements.forEach(el => el.style.display = "none");
+
+        // Show the selected element
+        if (element) {
+            element.style.display = "block";
+        }
+    }
+
+   // Reset the dropdown selection back to its default (empty) option
+    select.selectedIndex = 0; // Reset to first option (empty)
+}
+	
+function toggleDisplayDropDownQA(select) {
+    const selectedValue = select.value;
+
+    if (!selectedValue) return; // Ignore if no valid option is selected
+
+    // Get the selected element
+    const element = document.getElementById(selectedValue);
+
+    // If the element is already visible, hide it
+    if (element && element.style.display === "block") {
+        element.style.display = "none";
+    } else {
+        // Hide all other elements first
+        const allElements = document.querySelectorAll('#NoteQA1, #NoteQA2, #NoteQA3');
+        allElements.forEach(el => el.style.display = "none");
+
+        // Show the selected element
+        if (element) {
+            element.style.display = "block";
+        }
+    }
+
+   // Reset the dropdown selection back to its default (empty) option
+    select.selectedIndex = 0; // Reset to first option (empty)
+}
+
+function toggleDisplayDropDownClarify(select) {
+    const selectedValue = select.value;
+
+    if (!selectedValue) return; // Ignore if no valid option is selected
+
+    // Get the selected element
+    const element = document.getElementById(selectedValue);
+
+    // If the element is already visible, hide it
+    if (element && element.style.display === "block") {
+        element.style.display = "none";
+    } else {
+        // Hide all other elements first
+        const allElements = document.querySelectorAll('#NoteClarify1, #NoteClarify2, #NoteClarify3');
+        allElements.forEach(el => el.style.display = "none");
+
+        // Show the selected element
+        if (element) {
+            element.style.display = "block";
+        }
+    }
+
+   // Reset the dropdown selection back to its default (empty) option
+    select.selectedIndex = 0; // Reset to first option (empty)
+}
+	
+	function toggleDisplayDropDownMDP2P(select) {
+    const selectedValue = select.value;
+
+    if (!selectedValue) return; // Ignore if no valid option is selected
+
+    // Get the selected element
+    const element = document.getElementById(selectedValue);
+
+    // If the element is already visible, hide it
+    if (element && element.style.display === "block") {
+        element.style.display = "none";
+    } else {
+        // Hide all other elements first
+        const allElements = document.querySelectorAll('#NoteMDP2P1, #NoteMDP2P2');
+        allElements.forEach(el => el.style.display = "none");
+
+        // Show the selected element
+        if (element) {
+            element.style.display = "block";
+        }
+    }
+
+   // Reset the dropdown selection back to its default (empty) option
+    select.selectedIndex = 0; // Reset to first option (empty)
+}
+function copyContentdiv(divId) {
+    // Get the div by the provided ID
+    var element = document.getElementById(divId);
+
+    if (element) {
+        // Create a temporary textarea element
+        var tempTextArea = document.createElement('textarea');
+        document.body.appendChild(tempTextArea);
+
+        // Set the value of the textarea to the content of the div
+        tempTextArea.value = element.innerText; // or element.textContent
+
+        // Select the content of the temporary textarea
+        tempTextArea.select();
+        tempTextArea.setSelectionRange(0, 99999); // For mobile devices
+
+        // Execute the copy command
+        document.execCommand('copy');
+
+        // Remove the temporary textarea from the document
+        document.body.removeChild(tempTextArea);
+
+        // Provide visual feedback
+        element.classList.add('copied');
+        setTimeout(function() {
+            element.classList.remove('copied');
+        }, 1000); // Keep the highlight for 1 second
+    }
+}
+
+function checkAndToggle() {
+    var checkbox = document.getElementById('toggleCheckbox');
+    if (checkbox) {
+        toggleDisplay('NoteLock1');
+    }
+}
+
+
+  function refreshPage() {
+            location.reload();  // This will refresh the page
+        }
+
+
+function copythis(el) {
+    // Copy the text content to clipboard
+    navigator.clipboard.writeText(el.innerText);
+
+    // Change the style of the original element
+    el.style.backgroundColor = "black";
+    el.style.color = "white";
+}
+
+</script>
+
+
+
+
+
+
+
+
+</head>
+<style>
+
+
+html {
+font-size:20px;
+}
+
+/* Hide the scrollbar */
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none; /* Optional: hide scrollbar for WebKit browsers */
+}
+
+    /* Customize scrollbar track for WebKit-based browsers */
+::-webkit-scrollbar {
+            width: .7rem; /* Customize scrollbar width */
+            height: .7rem; /* Customize scrollbar height */
+        }
+
+::-webkit-scrollbar-track {
+            background-color: transparent; /* Change track background color */
+        }
+
+::-webkit-scrollbar-thumb {
+            background-color: #f0f0f0; /* Customize scrollbar thumb color */
+            border-radius: 6px; /* Customize scrollbar thumb radius */
+        }
+
+
+		
+  body {
+	background-color: #fff;
+	overflow: auto;
+	background-repeat: repeat;
+	height: 500px;
+	text-align: left;
+	color: #676d87;
+	font-family: Helvetica;
+	display:inline-block;
+}
+#maincontainer3 {
+	width: 11rem;
+		min-height:30rem;
+		vertical-align:top;
+	display:inline-block;
+
+		border:0px dotted grey;
+
+	
+ }
+
+
+
+.answerbox2 {
+		overflow:auto;
+		min-height: 5rem; 
+		width: 10rem;
+		padding: .5rem;
+		 border: 1px solid #ccc;
+		text-align: left;
+		display:inline-block;
+		resize:both;
+		font-size: .9rem;
+		  vertical-align: text-bottom;
+}
+
+.section {
+	font: .7rem tahoma;
+	letter-spacing: .1rem;
+	text-align: left;
+	padding:  .2rem;
+	padding-left:1rem;
+	min-height:1rem;
+	width:10rem;
+	margin-top: .3rem;
+	margin-bottom: .3rem;
+	color: #fff;
+	border:0;
+	display:inline-block;
+}
+ .buttonstylemini {
+	color: #000;
+	font-size:  8pt;
+	background-color:dark grey;
+	width:50px;
+	height:20px;
+	text-align: center;
+	border-radius:2px;
+	border:0px;
+	display:inline-block;
+	vertical-align:top;
+ } 
+    
+.buttonstyle_location {
+  color: #ffff;
+  font-size: .7rem;
+  width:3.57rem;
+  text-align: center;
+  padding: .2rem;
+  border: 0px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: -.1rem;
+    border-radius: .1rem;
+	margin-top: .1rem;
+	
+}
+
+ .notestyle_Edits5 {
+  background-color: #733939;
+}
+
+ .notestyle_Edits {
+  background-color: #ff5e00;
+}
+ .notestyle_Edits2 {
+  background-color: #9e4b21;
+}
+ .notestyle_Edits3 {
+  background-color: red;
+}
+
+ .notestyle_Edits4 {
+  background-color: #8f0334;
+}
+ .notestyle_MD {
+  background-color: #595959;
+}
+.buttonstyle_Format{
+  color:black;
+  font-size: .7rem;
+  width: 5rem;
+  height:2.5rem;
+  text-align: center;
+  padding: .5rem;
+  border: 0px;
+  display: inline-block;
+  vertical-align: text-bottom;
+
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: .2rem;
+  	margin-top:5px;
+}
+
+.buttonstyle_Format.highlighted {
+  background-color: red; 
+  color: #fff;
+    border: 1px solid red;
+
+}
+		
+		
+.mini {
+  vertical-align: text-top;
+
+		
+}
+		
+.mini2 {
+  vertical-align: text-top;
+display: block;
+		
+}
+
+
+.addYESNO {
+font-size: .6rem;
+	text-align: center;
+	width:auto;
+	height:1rem;
+	color: white;
+ letter-spacing: .1rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	display:inline-block;
+}
+.copied {
+      background-color: #ff389c;
+	  color:#fff;
+        }
+		
+.stickynotes {
+width:11rem;
+font-size:.6rem;
+margin-bottom:.2rem;
+margin-top:.2rem;
+padding:.1rem;
+border: 1px solid grey;
+}
+
+</style>
+<body>
+
+
+
+<div id="maincontainer3">
+<div class="stickynotes" id="sticky2" onclick="copythis(this)">- Reaching out for extension.</div>
+<div class="stickynotes" id="sticky1" onclick="copythis(this)">- Record verified</div>
+
+<div class="section" style="background-color:#2b2c2e;margin-right:-3rem;">MD Notes</div><div class="addYESNO" onclick="copyContentdiv('MDnotes')">COPY</div>
+
+<div class="answerbox2 invisiblescroll" id="MDnotes" style="font-size:.8rem;" contenteditable="true">
+<div id="NoteClarify1" style="display:none;" class="mini" contenteditable="true">- Clarification received. <br> * Per client: </div>
+<div id="NoteClarify2" style="display:none;" class="mini" contenteditable="true">- Clarification received. <br> - determination has changed</div>
+<div id="NoteClarify3" style="display:none;" class="mini" contenteditable="true">- Clarification received. <br> - no change in determination</div>
+<div id="NoteClarify4" style="display:none;" class="mini" contenteditable="true">- Clarification received. <br> - reviewer approves all changes, no further feedback provided</div>
+<div id="NoteClarify5" style="display:none;" class="mini" contenteditable="true">- Clarification received. <br> - reviewer approves all changes</div>
+<div id="NoteMDP2P1" style="display:none;" class="mini" contenteditable="true">- P2P has taken place. <br> - determination has changed<br>
++ phone consult section updated.</div>
+<div id="NoteMDP2P2" style="display:none;" class="mini" contenteditable="true">- P2P has taken place. <br> - no change in determination<br>
++ phone consult section updated.</div>
+
+<div id="Extra7" style="display:none;" class="mini" contenteditable="true">- .2 reviewer agrees, ok to use SSO <br> + SSO added on .1 </div>
+
+
+</div>
+
+<center>
+
+
+<div class="buttonstyle_location notestyle_MD" style="width:6rem;">
+<div style="display:inline;">Clarification</div>
+<div style="display: inline-block; vertical-align:top;height:.75rem;">
+<select style="width:1.5rem; height:.75rem; padding:0px; font-size:.7rem; margin:0px;" onchange="toggleDisplayDropDownClarify(this)">
+    <option value="" disabled selected> </option>
+    <option value="NoteClarify1">Clarification received, per client...</option>
+    <option value="NoteClarify2" >Clarification received, determination has changed</option>
+    <option value="NoteClarify3">Clarification received, determination remains the same</option>
+    <option value="NoteClarify4">Clarification received, approves changes (no feedback)</option>
+    <option value="NoteClarify5">Clarification received, approves changes (feedback)</option>
+</select>
+</div>
+</div>
+<div class="buttonstyle_location notestyle_MD" style="width:4rem; ">
+<div style="display:inline;">P2P</div>
+<div style="display: inline-block; vertical-align:top;height:.75rem;">
+<select style="width:1.5rem; height:.75rem; padding:0px; font-size:.7rem; margin:0px;" onchange="toggleDisplayDropDownMDP2P(this)">
+    <option value="" disabled selected> </option>
+    <option value="NoteMDP2P2">P2P has taken place. Determination unchanged.</option>
+    <option value="NoteMDP2P1" >P2P has taken place. Determination has CHANGED.</option>
+</select>
+
+</div>
+</div>
+
+
+</center>
+<div class="section" style="background-color:#ff3f05;margin-right:-3rem;"><span id="auNotes" onclick="refreshPage()">AU notes</span></div>
+<div class="addYESNO" onclick="copyContentdiv('AUnotes')">COPY</div>
+
+<div class="answerbox2 invisiblescroll" id="AUnotes" style="font-size:.8rem;" contenteditable="true">
+
+<div id="panelreview1" style="display:none;">--[Panel Review: .1 of 2]--</div>
+<div id="panelreview2" style="display:none;">--[Panel Review: .2 of 2]--</div>
+
+<div id="panelreview8" style="display:none;">--[Panel Review: .1 of 3]--</div>
+<div id="panelreview9" style="display:none;">--[Panel Review: .2 of 3]--</div>
+
+<div id="panelreview10" style="display:none;">--[Panel Review: .3 of 3]--</div>
+
+<div id="panelreview3" style="display:none;">** still waiting on .1 **</div>
+<div id="panelreview4" style="display:none;">** still waiting on .2 **</div>
+<div id="panelreview7" style="display:none;" >** still waiting on .3 **</div>
+
+<div id="NoteAud" style="display:none;">
+
+<div style="font-weight:bold; display: inline-block; vertical-align:text-top;" contenteditable="false">Edits applied to--</div>
+<div id="NoteAudRecords" style="display:none;" class="mini" contenteditable="false">Records.</div>
+<div id="NoteAudPhone" style="display:none;" class="mini" contenteditable="false">Phone Consult.</div>
+<div id="NoteAudSOT" style="display:none;" class="mini" contenteditable="false">SOT.</div>
+<div id="NoteAudQ1" style="display:none;" class="mini" contenteditable="false">Q1.</div>
+<div id="NoteAudQ2" style="display:none;" class="mini" contenteditable="false">Q2.</div>
+<div id="NoteAudQ3" style="display:none;" class="mini" contenteditable="false">Q3.</div>
+<div id="NoteAudQ4" style="display:none;" class="mini" contenteditable="false">Q4.</div>
+<div id="NoteAudQ5" style="display:none;" class="mini" contenteditable="false">Q5.</div>
+<div id="NoteAudQ6" style="display:none;" class="mini" contenteditable="false">Q6.</div>
+<div id="NoteAudQ7" style="display:none;" class="mini" contenteditable="false">Q7.</div>
+<div id="NoteAudQ8" style="display:none;" class="mini" contenteditable="false">Q8.</div>
+<div id="NoteAudQ9" style="display:none;" class="mini" contenteditable="false">Q9.</div>
+<div id="NoteAudQ10" style="display:none;" class="mini" contenteditable="false">Q10.</div>
+<div id="NoteAudQ11" style="display:none;" class="mini" contenteditable="false">Q11.</div>
+<div id="NoteAudQ12" style="display:none;" class="mini" contenteditable="false">Q12.</div>
+<div id="NoteAudConc" style="display:none;" class="mini" contenteditable="false">Conclusion.</div>
+
+<div id="NoteAudPSREdit" style="display:none;" class="mini" contenteditable="false">MFL.</div>
+<div id="NoteAudCC" style="display:none;" class="mini" contenteditable="false">Comment Code.</div>
+<div id="NoteAudDesc" style="display:none;" class="mini" contenteditable="false">Case Desc.</div>
+<div id="NoteAudRef" style="display:none;" class="mini" contenteditable="false">Ref.</div>
+
+
+</div>
+
+<div id="Extra4" style="display:none;" class="mini" contenteditable="true">- returning to audit</div>
+<div id="Extra1" style="display:none;" class="mini" contenteditable="true">- all edits applied</div>
+<div id="Extra2" style="display:none;" class="mini" contenteditable="true">- no other changes made</div>
+<div id="Extra3" style="display:none;" class="mini" contenteditable="true">- new records received</div>
+
+<div id="Extra5" style="display:none;" class="mini" contenteditable="true">- reviewer time 0, time check needed</div>
+<div id="Extra6" style="display:none;" class="mini" contenteditable="true">- .2 reviewer agrees, ok to use SSO <br>
++ SSO added</div>
+<div id="Extra8" style="display:none;" class="mini" contenteditable="true">- internal MD, skip CQA, straight to audit</div>
+<div id="Extra9" style="display:none;" class="mini" contenteditable="true">- CQA/MFL/P2P not needed when denied on Q2.</div>
+
+<div id="NoteAudSSO" style="display:none;" class="mini" contenteditable="true">+ SSO added.</div>
+<div id="NoteAudSO" style="display:none;" class="mini" contenteditable="true">+ Sign-off sent.</div>
+<div id="NoteMFL1" style="display:none;color:#228238;" class="mini" contenteditable="true">+ MFL added.</div>
+<div id="NoteMFL2" style="display:none;color:#228238;" class="mini" contenteditable="true">+ MFL/SSL added.</div>
+
+<div id="NoteAudNRFB" style="display:none;" class="mini" contenteditable="true">+ NFRB added.</div>
+<div id="NoteMFL5" style="display:none;color:#228238;" class="mini" contenteditable="true">+ MFL (approval) added.</div>
+<div id="NoteMFL3" style="display:none;color:#228238;" class="mini" contenteditable="true">+ MFL (exception) added.</div>
+<div id="NoteMFL4" style="display:none;color:#228238;" class="mini" contenteditable="true">- MFL not needed. Non-adverse.</div>
+<div id="NoteSSO1" style="display:none;color:red;" class="mini" contenteditable="true">• STATE SSO needed</div>
+<div id="NoteSSO2" style="display:none;color:#228238;" class="mini" contenteditable="true">- SSO not needed. Non-adverse.</div>
+<div id="NoteSSO3" style="display:none;color:#228238;" class="mini" contenteditable="true">+ SSL added</div>
+<div id="NoteSSO4" style="display:none;color:#228238;" class="mini" contenteditable="true">+ Dr. Musselman's SSO added</div>
+<div id="NoteP2P1" style="display:none; color:#228238;" class="mini" contenteditable="true">- P2P completed</div>
+
+<div id="NoteP2P2" style="display:none;color:#228238;" class="mini" contenteditable="true">- P2P not needed. Non-adverse.</div>
+<div id="NoteP2P9" style="display:none;color:#228238;" class="mini" contenteditable="true">- P2P not needed. Declined.</div>
+<div id="NoteP2P10" style="display:none;color:#228238;" class="mini" contenteditable="true">- P2P not needed. No Response.</div>
+<div id="NoteP2P11" style="display:none;color:#228238;" class="mini" contenteditable="true">- P2P not needed. Optional.</div>
+<div id="NoteP2P12" style="display:none;color:#228238;" class="mini" contenteditable="true">- P2P attempted. Not needed. (Non-adverse)</div>
+
+<div id="NoteP2P3" style="display:none; color:#228238;" class="mini" contenteditable="true">- adequate P2P attempts made (if adverse)</div>
+
+<div id="NoteP2P4" style="display:none; color:red;" class="mini" contenteditable="true">- P2P unsuccessful (if adverse)<br>
+- 1 more reasonable attempt needed</div>
+
+<div id="NoteP2P5" style="display:none;color:red;" class="mini" contenteditable="true">- P2P unsuccessful (if adverse)<br>
+- 2 more reasonable attempts needed</div>
+
+<div id="NoteP2P6" style="display:none;color:red;" class="mini" contenteditable="true">- P2P unsuccessful, issue with P2P<br>
+* need to QA client</div>
+<div id="NoteP2P7" style="display:none;color:red;" class="mini" contenteditable="true">- P2P unsuccessful (required)<br>
+- QA client regarding P2P</div>
+
+<div id="NoteP2P8" style="display:none;color:#228238;" class="mini" contenteditable="true">
+
+- additional P2P attempts made<br>
++ phone consult section updated<br>
+** ok to unlock **
+</div>
+<div id="Extra10" style="display:none;" class="mini" contenteditable="true">- Report OK. Skip CQA, agree?</div>
+<div id="NoteLock6" style="display:none;color:red" class="mini"  contenteditable="true">• NRFB from CQA needed</div>
+<div id="NoteLock7" style="display:none;color:red" class="mini"  contenteditable="true">• NRFB from MD needed</div>
+
+<div id="NoteLock4" style="display:none;color:#228238;" class="mini"  contenteditable="true">- HOLD COMPLETE</div>
+
+<div id="NoteLock5" style="display:none;color:#228238;" class="mini"  contenteditable="true">- policy/criteria not used for denial</div>
+
+<div id="NoteLock2" style="display:none;color:red;" class="mini"  contenteditable="true">- Release case AFTER </div>
+<div id="NoteLock1" style="display:none;color:#228238;" class="mini" contenteditable="true">** ok to unlock **</div>
+
+<div id="NoteLock3" style="display:none; color:#228238;" class="mini" contenteditable="true">** ok to unlock with current P2P per client **</div>
+
+<div id="NoteQA1" style="display:none;" class="mini" contenteditable="true">- QA to CE. RR for SSO.</div>
+
+<div id="NoteQA2" style="display:none;" class="mini" contenteditable="true">- QA to self.<br>* Queried client. Holding for response.</div>
+<div id="NoteQA3" style="display:none;" class="mini" contenteditable="true">- QA to self.<Br>* Queried client for P2P. Holding for response.</div>
+<div id="NoteQA4" style="display:none;" class="mini" contenteditable="true">- QA to original CF to follow.</div>
+<div id="NoteQA5" style="display:none;" class="mini" contenteditable="true">- QA to self. <br> </div>
+<div id="NoteAudClose" style="display:none;" class="mini" contenteditable="true">- Ok to unlock. <Br>
+Per Client:<br>EMAIL</div>
+<div id="NoteAudClientResponse" style="display:none;" class="mini" contenteditable="true">- Per client response:<br>EMAIL
+</div>
+
+
+</div> 
+<center>
+<button onclick="toggleDisplayEdits('NoteAud')" class="buttonstyle_location notestyle_Edits">Edits</button>
+<button onclick="toggleDisplayEdits('NoteAudRecords'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Records</button>
+<button onclick="toggleDisplayEdits('NoteAudPhone'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Phone</button>
+<button onclick="toggleDisplayEdits('NoteAudSOT'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">SOT</button>
+<button onclick="toggleDisplayEdits('NoteAudQ1'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Q1</button>
+<button onclick="toggleDisplayEdits('NoteAudQ2'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Q2</button>
+<button onclick="toggleDisplayEdits('NoteAudQ3'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Q3</button>
+<button onclick="toggleDisplayEdits('NoteAudConc'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Conclusion</button>
+<button onclick="toggleDisplayEdits('NoteAudCC'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">CC</button>
+<button onclick="toggleDisplayEdits('NoteAudDesc'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Desc.</button>
+<button onclick="toggleDisplayEdits('NoteAudRef'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Ref.</button>
+<button onclick="toggleDisplayEdits('NoteAudPSREdit'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">MFL</button>
+<button onclick="toggleDisplay('NoteAudSO');" class="buttonstyle_location notestyle_Edits2">+ S/O</button>
+<button onclick="toggleDisplay('NoteAudNRFB');" class="buttonstyle_location notestyle_Edits2">+ NRFB</button>
+<button onclick="toggleDisplay('NoteAudSSO');" class="buttonstyle_location notestyle_Edits2">+ SSO</button>
+<br>
+
+<div class="buttonstyle_location notestyle_Edits4" style="width:4rem; ">
+<div style="display:inline;">MFL</div>
+<div style="display: inline-block; vertical-align:top;height:.75rem;">
+<select style="width:1.5rem; height:.75rem; padding:0px; font-size:.7rem; margin:0px;" onchange="toggleDisplayDropDown(this)">
+    <option value="" disabled selected> </option>
+    <option value="NoteMFL1"  style="color:#228238;">MFL added</option>
+    <option value="NoteMFL2" style="color:#228238;">MFL/SSL added </option>
+    <option value="NoteMFL3">MFL (exception) added</option>
+	 <option value="NoteMFL5">MFL (approval) added</option>
+    <option value="NoteMFL4">MFL not needed (non-adverse)</option>
+	
+
+</select>
+</div>
+</div>
+
+<div class="buttonstyle_location notestyle_Edits4" style="width:4rem;">
+<div style="display:inline;">SSO</div>
+<div style="display: inline-block; vertical-align:top;height:.75rem;">
+<select style="width:1.5rem; height:.75rem; padding:0px; font-size:.7rem; margin:0px;" onchange="toggleDisplayDropDownSSO(this)">
+    <option value="" disabled selected> </option>
+    <option value="NoteSSO1" style="color:red;">SSO needed</option>
+	<option value="NoteSSO3" style="color:#228238;">SSL added</option>
+	
+    <option value="NoteSSO4" style="color:#228238;">Dr. Musselman's SSO added</option>
+    <option value="NoteSSO2">SSO not needed (non-adverse)</option>
+</select>
+</div>
+</div>
+
+<div class="buttonstyle_location notestyle_Edits3" style="width:4rem;">
+<div style="display:inline;">P2P</div>
+<div style="display: inline-block; vertical-align:top;height:.75rem;">
+<select style="width:1.5rem; height:.75rem; padding:0px; font-size:.7rem; margin:0px;" onchange="toggleDisplayDropDownP2P(this)">
+    <option value="" disabled selected> </option>
+    <option value="NoteP2P1" style="color:#228238;">P2P completed</option>
+    <option value="NoteP2P2" style="color:#228238;">P2P not needed (non-adverse)</option>
+	<option value="NoteP2P9" style="color:#228238;">P2P not needed. Declined.</option>
+	<option value="NoteP2P10" style="color:#228238;">P2P not needed. No Response.</option>
+	<option value="NoteP2P11" style="color:#228238;">P2P not needed. Optional.</option>
+	<option value="NoteP2P12" style="color:#228238;">P2P attempted, but not needed (non-adverse).</option>
+		
+	<option value="NoteP2P7" style="color:red;">P2P unsuccessful (required)</option>
+	<option value="NoteP2P3" style="color:#228238;">P2P unsuccessful (if-adverse), reasonable attempt made</option>
+	<option value="NoteP2P4" style="color:red;">P2P unsuccessful (if-adverse), need 1 more attempt</option>
+	<option value="NoteP2P5" style="color:red;">P2P unsuccessful (if-adverse), need 2 more attempts</option>
+	<option value="NoteP2P6" style="color:red;">P2P unsuccessful (if-adverse), issue with P2P</option>
+	<option value="NoteP2P8" style="color:#228238;">additional P2P attempts made; ok to close</option>
+</select>
+</div>
+</div>
+
+<div class="buttonstyle_location notestyle_Edits3" style="width:4rem;">
+<div style="display:inline;">Lock</div>
+<div style="display: inline-block; vertical-align:top;height:.75rem;">
+<select style="width:1.5rem; height:.75rem; padding:0px; font-size:.7rem; margin:0px;" onchange="toggleDisplayDropDownLock(this)">
+    <option value="" disabled selected> </option>
+    <option value="NoteLock1" style="color:#228238;">Ok to unlock</option>
+    <option value="NoteLock2" style="color:red;">RELEASE case until time</option>
+	
+    <option value="NoteLock4" style="color:#228238;">HOLD COMPLETE</option>
+	
+    <option value="NoteLock5" style="color:#228238;">Did not use policy/criteria</option>
+	<option value="NoteLock3" style="color:#228238;">Ok to unlock with current P2P attempts</option>
+	
+    <option value="NoteLock6" style="color:red;">NRFB needed CQA feedback</option>
+	
+    <option value="NoteLock7" style="color:red;">NRFB needed MD feedback</option>
+	
+</select>
+</div>
+</div>
+<div class="buttonstyle_location notestyle_Edits3" style="width:1.5rem;height:1.15rem;padding:0px;">
+<input type="checkbox" id="toggleCheckbox" style="height:.75rem;" onclick="checkAndToggle()">
+
+</div>
+<Br>
+<div class="buttonstyle_location notestyle_Edits5" style="width:4rem;">
+<div style="display:inline;">QA</div>
+<div style="display: inline-block; vertical-align:top;height:.75rem;">
+<select style="width:1.5rem; height:.75rem; padding:0px; font-size:.7rem; margin:0px;" onchange="toggleDisplayDropDownQA(this)">
+    <option value="" disabled selected> </option>
+    <option value="NoteQA1">QA to CE for SSO.</option>
+    <option value="NoteQA2">QA to client</option>
+	<option value="NoteQA3">QA to client for P2P</option>
+	<option value="NoteQA4">QA to original CF to follow</option>
+	
+	<option value="NoteQA5">QA to self</option>
+</select>
+</div>
+</div>
+
+<div class="buttonstyle_location notestyle_Edits5" style="width:4rem;">
+<div style="display:inline;">Panel</div>
+<div style="display: inline-block; vertical-align:top;height:.75rem;">
+<select style="width:1.5rem; height:.75rem; padding:0px; font-size:.7rem; margin:0px;" onchange="toggleDisplayDropDownPanel(this)">
+    <option value="" disabled selected> </option>
+    <option value="panelreview1">.1 of 2</option>
+    <option value="panelreview2">.2 of 2</option>
+    <option value="panelreview3">waiting on .1</option>
+	<option value="panelreview4">waiting on .2</option>
+	<option value="panelreview7">waiting on .3</option>
+	<option value="panelreview8">.1 of 3</option>
+	<option value="panelreview9">.2 of 3</option>
+    <option value="panelreview10">.3 of 3</option>
+</select>
+</div>
+</div>
+<Br>
+<button onclick="toggleDisplayEdits('NoteAudQ4'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Q4</button>
+<button onclick="toggleDisplayEdits('NoteAudQ5'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Q5</button>
+<button onclick="toggleDisplayEdits('NoteAudQ6'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Q6</button>
+<button onclick="toggleDisplayEdits('NoteAudQ7'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Q7</button>
+<button onclick="toggleDisplayEdits('NoteAudQ8'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Q8</button>
+<button onclick="toggleDisplayEdits('NoteAudQ9'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Q9</button>
+<button onclick="toggleDisplayEdits('NoteAudQ10'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Q10</button>
+<button onclick="toggleDisplayEdits('NoteAudQ11'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Q11</button>
+<button onclick="toggleDisplayEdits('NoteAudQ12'); toggleVisible('NoteAud')" class="buttonstyle_location notestyle_Edits">Q12</button>
+
+
+<div class="buttonstyle_location notestyle_Edits5" style="width:7rem;">
+<div style="display:inline;">Misc</div>
+<div style="display: inline-block; vertical-align:top;height:.75rem;">
+<select style="width:4rem; height:.75rem; padding:0px; font-size:.7rem; margin:0px;" onchange="toggleDisplayDropDownPanel(this)">
+    <option value="" disabled selected> </option>
+	
+    <option value="Extra1">- all edits applied</option>
+	<option value="Extra6">- .2 reviewer agrees, ok to use SSO</option>
+		<option value="Extra8">- internal MD, skip CQA</option>
+			<option value="Extra9">- CQA/MFL/P2P not needed</option>	
+			
+			<option value="Extra10">- CQA/MFL not needed</option>	
+    <option value="Extra2">- no other changes made</option>
+    <option value="Extra3">- new records received</option>
+	<option value="Extra4">- returning to audit</option>
+	<option value="Extra5">- reviewer time 0, time check</option>
+</select>
+</div>
+</div>
+
+
+</center>
+
+</div>    </div>   
+
+
+</body>
+
+</html>
